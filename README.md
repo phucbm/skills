@@ -4,13 +4,30 @@ Personal knowledge base for Claude Code — patterns and integrations observed a
 
 ## Install
 
+Add the phucbm marketplace (once, ever):
 ```shell
 /plugin marketplace add phucbm/skills
 ```
 
+Install all phucbm plugins:
 ```shell
+/plugin install claudify@phucbm
 /plugin install skills@phucbm
 ```
+
+Update all phucbm plugins:
+```shell
+/plugin marketplace update phucbm
+```
+
+## Plugins
+
+All plugins available from the `phucbm` marketplace:
+
+| Plugin | Repo | Description |
+|---|---|---|
+| `claudify` | [phucbm/claudify](https://github.com/phucbm/claudify) | Bootstrap `.claude/` structure for any existing repo |
+| `skills` | [phucbm/skills](https://github.com/phucbm/skills) | Personal knowledge base (this repo) |
 
 ## Knowledge
 
@@ -23,5 +40,5 @@ Personal knowledge base for Claude Code — patterns and integrations observed a
 
 | Skill | Description |
 |---|---|
-| [add-skill](skills/add-skill.md) | Summarize knowledge from current project and push to this repo |
-| [update-skill](skills/update-skill.md) | Diff and update an existing knowledge entry |
+| [add-skill](skills/add-skill/SKILL.md) | Summarize knowledge from current project and push to this repo |
+| [update-skill](skills/update-skill/SKILL.md) | Diff and update an existing knowledge entry |
