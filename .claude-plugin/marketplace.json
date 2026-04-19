@@ -1,0 +1,17 @@
+{
+  "name": "phucbm",
+  "metadata": {
+    "description": "Claude plugins by phucbm."
+  },
+  "owner": {
+    "name": "phucbm",
+    "url": "https://github.com/phucbm"
+  },
+  "plugins": [
+    {
+      "name": "skills",
+      "source": "./",
+      "description": "Personal knowledge base — patterns and integrations across projects"
+    }
+  ]
+}

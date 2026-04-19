@@ -1,0 +1,13 @@
+{
+  "name": "skills",
+  "displayName": "Skills",
+  "version": "1.0.0",
+  "description": "Personal knowledge base — patterns and integrations across projects",
+  "author": {
+    "name": "phucbm",
+    "url": "https://github.com/phucbm"
+  },
+  "homepage": "https://github.com/phucbm/skills",
+  "repository": "https://github.com/phucbm/skills",
+  "license": "MIT"
+}
