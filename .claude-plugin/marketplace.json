@@ -10,7 +10,10 @@
   "plugins": [
     {
       "name": "claudify",
-      "source": "https://github.com/phucbm/claudify",
+      "source": {
+        "source": "github",
+        "repo": "phucbm/claudify"
+      },
       "description": "Bootstrap .claude/ structure for any existing repo"
     },
     {
