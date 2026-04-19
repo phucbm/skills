@@ -29,7 +29,7 @@ Each topic gets TWO files:
 
 4. **Wait for confirmation** before writing anything.
 
-5. **Write both files**, update `README.md` knowledge table, commit and push:
+5. **Write both files**, update `README.md` knowledge table, bump the patch version in `.claude-plugin/plugin.json` (e.g. `1.0.0` → `1.0.1`), commit and push:
    ```shell
    git -C /tmp/phucbm-skills add .
    git -C /tmp/phucbm-skills commit -m "skill: add <topic>"

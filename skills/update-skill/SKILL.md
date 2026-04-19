@@ -31,7 +31,7 @@ Each topic has TWO files — always consider both when updating:
 
 4. **Wait for user confirmation** before applying anything.
 
-5. **Apply edits**, commit and push:
+5. **Apply edits**, bump the patch version in `.claude-plugin/plugin.json` (e.g. `1.0.1` → `1.0.2`), commit and push:
    ```shell
    git -C /tmp/phucbm-skills add .
    git -C /tmp/phucbm-skills commit -m "knowledge: update <topic>"
