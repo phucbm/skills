@@ -17,6 +17,7 @@ Personal knowledge base for Claude Code — patterns and integrations observed a
 | Topic | File | Description |
 |---|---|---|
 | GROQ | [groq/streaming-integration.md](knowledge/groq/streaming-integration.md) | SSE streaming with GROQ API, env setup, response parsing |
+| Claude Plugins | [claude-plugins/marketplace-management.md](knowledge/claude-plugins/marketplace-management.md) | Plugin structure, marketplace setup, adding new phucbm plugins |
 
 ## Managing this repo
 
