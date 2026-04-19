@@ -9,6 +9,11 @@
   },
   "plugins": [
     {
+      "name": "claudify",
+      "source": "https://github.com/phucbm/claudify",
+      "description": "Bootstrap .claude/ structure for any existing repo"
+    },
+    {
       "name": "skills",
       "source": "./",
       "description": "Personal knowledge base — patterns and integrations across projects"
