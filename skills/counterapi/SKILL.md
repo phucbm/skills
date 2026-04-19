@@ -12,4 +12,4 @@ allowed-tools:
   - Bash
 ---
 
-Read /Users/bmp/.claude/plugins/cache/phucbm/skills/1.0.2/skills/add-skill/../../knowledge/counterapi/usage.md and apply the patterns there.
+Read `${CLAUDE_SKILL_DIR}/../../knowledge/counterapi/usage.md` and apply the patterns there.
