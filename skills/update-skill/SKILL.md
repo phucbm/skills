@@ -1,6 +1,12 @@
 # Update Knowledge in phucbm/skills
 
-Compare current knowledge against an existing skill file and apply updates.
+When the user says "update my X skill", "update groq knowledge", or "add this to my X skill/knowledge":
+
+## Structure reminder
+
+Each topic has TWO files — always consider both when updating:
+- `skills/<topic>/SKILL.md` — thin wrapper: trigger description + pointer to knowledge file. Update only if the trigger wording or steps change.
+- `knowledge/<topic>/<slug>.md` — the actual content: env setup, code patterns, gotchas. This is usually what gets updated.
 
 ## Steps
 
@@ -9,30 +15,33 @@ Compare current knowledge against an existing skill file and apply updates.
    gh repo clone phucbm/skills /tmp/phucbm-skills 2>/dev/null || git -C /tmp/phucbm-skills pull
    ```
 
-2. **Surface related knowledge** — scan all files in `knowledge/` and list ones related to the current topic, even if not the target file. Tell the user:
-   > "Related entries I found: `knowledge/groq/streaming-integration.md` — should any of these be updated too?"
+2. **Surface related files** — scan `skills/` and `knowledge/` for anything related to the topic. List all candidates:
+   > "Files that may need updating:
+   > - `skills/groq/SKILL.md` (trigger description)
+   > - `knowledge/groq/streaming-integration.md` (actual content)
+   > Should I update both, or just the knowledge file?"
 
-3. **Identify the target file** — ask the user which to update, or infer from context.
-
-4. **Show a diff** of current vs proposed:
+3. **Show a diff for each file that will change**:
    ```
+   FILE:     knowledge/groq/streaming-integration.md
    CURRENT:  <existing section>
    PROPOSED: <updated section>
    REASON:   <why>
    ```
 
-5. **Wait for user confirmation** before applying.
+4. **Wait for user confirmation** before applying anything.
 
-6. **Apply edits**, commit and push:
+5. **Apply edits**, commit and push:
    ```shell
    git -C /tmp/phucbm-skills add .
-   git -C /tmp/phucbm-skills commit -m "knowledge: update <slug>"
+   git -C /tmp/phucbm-skills commit -m "knowledge: update <topic>"
    git -C /tmp/phucbm-skills push
    ```
 
-7. Confirm the push URL to the user.
+6. Confirm the push URL to the user.
 
 ## Rules
 - Never silently overwrite — always show the diff first
-- If the update also changes the README description, update that row too
+- If README.md description for this topic changed, update that row too
 - Prefer surgical edits over full rewrites
+- `SKILL.md` rarely needs updating — only if the skill trigger or workflow changes
