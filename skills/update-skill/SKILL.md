@@ -1,12 +1,14 @@
-# Update Knowledge in phucbm/skills
-
-When the user says "update my X skill", "update groq knowledge", or "add this to my X skill/knowledge":
+---
+name: update-skill
+description: Update an existing skill or knowledge entry in phucbm/skills. Use when the user says "update my X skill", "update X knowledge", or "add this change to my X skill/knowledge".
+allowed-tools: Bash Read Write Edit
+---
 
 ## Structure reminder
 
 Each topic has TWO files — always consider both when updating:
-- `skills/<topic>/SKILL.md` — thin wrapper: trigger description + pointer to knowledge file. Update only if the trigger wording or steps change.
-- `knowledge/<topic>/<slug>.md` — the actual content: env setup, code patterns, gotchas. This is usually what gets updated.
+- `skills/<topic>/SKILL.md` — thin wrapper with frontmatter. Update only if trigger wording or steps change.
+- `knowledge/<topic>/<slug>.md` — the actual content. This is usually what gets updated.
 
 ## Steps
 
@@ -31,7 +33,7 @@ Each topic has TWO files — always consider both when updating:
 
 4. **Wait for user confirmation** before applying anything.
 
-5. **Apply edits**, bump the patch version in `.claude-plugin/plugin.json` (e.g. `1.0.1` → `1.0.2`), commit and push:
+5. **Apply edits**, bump patch version in `.claude-plugin/plugin.json`, commit and push:
    ```shell
    git -C /tmp/phucbm-skills add .
    git -C /tmp/phucbm-skills commit -m "knowledge: update <topic>"
@@ -44,4 +46,4 @@ Each topic has TWO files — always consider both when updating:
 - Never silently overwrite — always show the diff first
 - If README.md description for this topic changed, update that row too
 - Prefer surgical edits over full rewrites
-- `SKILL.md` rarely needs updating — only if the skill trigger or workflow changes
+- `SKILL.md` rarely needs updating — only if frontmatter `description`/`when_to_use` or workflow changes

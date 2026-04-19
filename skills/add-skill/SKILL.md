@@ -1,12 +1,14 @@
-# Add Knowledge to phucbm/skills
-
-When the user says "add this to my skills", "save this as a skill", or "push this knowledge to phucbm/skills":
+---
+name: add-skill
+description: Add a new skill or knowledge entry to phucbm/skills repo. Use when the user says "add this to my skills", "save this as a skill", "push this knowledge to phucbm/skills", or wants to preserve a pattern from the current project.
+allowed-tools: Bash Read Write Edit
+---
 
 ## Structure reminder
 
 Each topic gets TWO files:
-- `skills/<topic>/SKILL.md` — thin wrapper: 3-5 lines describing when to trigger + pointer to the knowledge file. NOT where the content lives.
-- `knowledge/<topic>/<slug>.md` — the actual content: env setup, code patterns, gotchas, source reference.
+- `skills/<topic>/SKILL.md` — thin wrapper: frontmatter with `description` + `when_to_use` + pointer to knowledge file
+- `knowledge/<topic>/<slug>.md` — the actual content: env setup, code patterns, gotchas, source reference
 
 ## Steps
 
@@ -24,12 +26,12 @@ Each topic gets TWO files:
    - Use lowercase kebab-case. Ask if unclear.
 
 3. **Draft both files** and show them to the user:
-   - `SKILL.md`: trigger description (when does this activate?) + one step: "read `knowledge/<topic>/<slug>.md` and apply it"
+   - `SKILL.md`: correct frontmatter (`name`, `description`, `when_to_use`, `allowed-tools`) + one instruction: read the knowledge file via `${CLAUDE_SKILL_DIR}/../../knowledge/<topic>/<slug>.md` and apply it
    - `knowledge/<slug>.md`: full content — env vars, code patterns, env template with empty values, source reference
 
 4. **Wait for confirmation** before writing anything.
 
-5. **Write both files**, update `README.md` knowledge table, bump the patch version in `.claude-plugin/plugin.json` (e.g. `1.0.0` → `1.0.1`), commit and push:
+5. **Write both files**, update `README.md` knowledge table, bump patch version in `.claude-plugin/plugin.json`, commit and push:
    ```shell
    git -C /tmp/phucbm-skills add .
    git -C /tmp/phucbm-skills commit -m "skill: add <topic>"
@@ -41,4 +43,5 @@ Each topic gets TWO files:
 ## Rules
 - Never include real API keys or secrets — keep env blocks with empty values as templates
 - Always show both files and wait for confirmation before pushing
-- `SKILL.md` stays thin — 3-5 lines max, content belongs in `knowledge/`
+- `SKILL.md` stays thin — frontmatter + a few lines, content belongs in `knowledge/`
+- Always use `${CLAUDE_SKILL_DIR}/../../knowledge/...` to reference knowledge files
