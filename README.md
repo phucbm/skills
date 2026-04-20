@@ -13,6 +13,7 @@ Install all phucbm plugins:
 ```shell
 /plugin install claudify@phucbm
 /plugin install skills@phucbm
+/plugin install registry-system@phucbm
 ```
 
 Update all phucbm plugins:
@@ -28,6 +29,7 @@ All plugins available from the `phucbm` marketplace:
 |---|---|---|
 | `claudify` | [phucbm/claudify](https://github.com/phucbm/claudify) | Bootstrap `.claude/` structure for any existing repo |
 | `skills` | [phucbm/skills](https://github.com/phucbm/skills) | Personal knowledge base (this repo) |
+| `registry-system` | [phucbm/registry-system](https://github.com/phucbm/registry-system) | Manage shadcn-compatible component registry — create, validate, and push components |
 
 ## Knowledge
 
