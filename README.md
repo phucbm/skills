@@ -44,3 +44,4 @@ All plugins available from the `phucbm` marketplace:
 |---|---|
 | [add-skill](skills/add-skill/SKILL.md) | Summarize knowledge from current project and push to this repo |
 | [update-skill](skills/update-skill/SKILL.md) | Diff and update an existing knowledge entry |
+| [learn](skills/learn/SKILL.md) | Scan any repo, diff against existing skills, suggest what to save or update |
