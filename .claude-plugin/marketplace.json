@@ -20,6 +20,14 @@
       "name": "skills",
       "source": "./",
       "description": "Personal knowledge base — patterns and integrations across projects"
+    },
+    {
+      "name": "registry-system",
+      "source": {
+        "source": "github",
+        "repo": "phucbm/registry-system"
+      },
+      "description": "Manage shadcn-compatible component registry — create, validate, and push components"
     }
   ]
 }

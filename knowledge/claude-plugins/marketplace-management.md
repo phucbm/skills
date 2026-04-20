@@ -34,6 +34,7 @@ Current plugins in `phucbm/skills/.claude-plugin/marketplace.json`:
 |---|---|---|
 | `claudify` | `https://github.com/phucbm/claudify` | Bootstrap `.claude/` for any repo |
 | `skills` | `./` | Personal knowledge base |
+| `registry-system` | `https://github.com/phucbm/registry-system` | Manage shadcn-compatible component registry |
 
 ## Adding a new phucbm plugin
 
