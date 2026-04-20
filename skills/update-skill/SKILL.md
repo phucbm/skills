@@ -4,11 +4,15 @@ description: Update an existing skill or knowledge entry in phucbm/skills. Use w
 allowed-tools: Bash Read Write Edit
 ---
 
-## Structure reminder
+## Structure
 
-Each topic has TWO files — always consider both when updating:
-- `skills/<topic>/SKILL.md` — thin wrapper with frontmatter. Update only if trigger wording or steps change.
-- `knowledge/<topic>/<slug>.md` — the actual content. This is usually what gets updated.
+### Skills — flat, one level deep
+- `skills/<topic>/SKILL.md` — thin wrapper. Update only if trigger wording, description, or knowledge pointers change.
+- Never move or rename to a nested path — `skills/vercel/ai-gateway/SKILL.md` breaks plugin discovery.
+
+### Knowledge — namespaced, shareable
+- `knowledge/<category>/<slug>.md` — the actual content. This is usually what gets updated.
+- A knowledge file may be referenced by multiple skills — check before editing. If shared, note which other skills will be affected.
 
 ## Steps
 
@@ -17,10 +21,10 @@ Each topic has TWO files — always consider both when updating:
    gh repo clone phucbm/skills /tmp/phucbm-skills 2>/dev/null || git -C /tmp/phucbm-skills pull
    ```
 
-2. **Surface related files** — scan `skills/` and `knowledge/` for anything related to the topic. List all candidates:
+2. **Surface related files** — scan `skills/` and `knowledge/` for anything related to the topic. List all candidates and flag shared knowledge files:
    > "Files that may need updating:
    > - `skills/groq/SKILL.md` (trigger description)
-   > - `knowledge/groq/streaming-integration.md` (actual content)
+   > - `knowledge/groq/streaming-integration.md` (actual content — also referenced by skills/X)
    > Should I update both, or just the knowledge file?"
 
 3. **Show a diff for each file that will change**:
@@ -46,4 +50,5 @@ Each topic has TWO files — always consider both when updating:
 - Never silently overwrite — always show the diff first
 - If README.md description for this topic changed, update that row too
 - Prefer surgical edits over full rewrites
-- `SKILL.md` rarely needs updating — only if frontmatter `description`/`when_to_use` or workflow changes
+- `SKILL.md` rarely needs updating — only if frontmatter `description`/`when_to_use` or knowledge pointers change
+- Knowledge files are generic — examples referencing specific projects are fine, but never add project-specific data as facts

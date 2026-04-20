@@ -4,11 +4,18 @@ description: Add a new skill or knowledge entry to phucbm/skills repo. Use when 
 allowed-tools: Bash Read Write Edit
 ---
 
-## Structure reminder
+## Structure
 
-Each topic gets TWO files:
-- `skills/<topic>/SKILL.md` — thin wrapper: frontmatter with `description` + `when_to_use` + pointer to knowledge file
-- `knowledge/<topic>/<slug>.md` — the actual content: env setup, code patterns, gotchas, source reference
+### Skills — always flat, one level deep
+- `skills/<topic>/SKILL.md` — thin wrapper: frontmatter + pointer(s) to knowledge file(s)
+- NEVER nest: `skills/vercel/ai-gateway/SKILL.md` breaks plugin discovery — use `skills/vercel-ai-gateway/SKILL.md`
+- One skill per topic, kebab-case: `skills/vercel-ai-gateway/`, `skills/pinecone/`, `skills/rag/`
+
+### Knowledge — namespaced, shareable
+- `knowledge/<category>/<slug>.md` — the actual content
+- A knowledge file can be referenced by multiple skills
+  e.g. `knowledge/rag/concepts.md` read by both `skills/rag/SKILL.md` and `skills/pinecone/SKILL.md`
+- A single session can produce multiple skills that share knowledge files — plan all files together before drafting
 
 ## Steps
 
@@ -21,17 +28,18 @@ Each topic gets TWO files:
    > "I found a related entry: `knowledge/groq/streaming-integration.md` — update that instead, or add a new file?"
 
 2. **Determine paths**:
-   - Knowledge: `knowledge/<topic>/<slug>.md`
-   - Skill: `skills/<topic>/SKILL.md`
+   - Skill: `skills/<topic>/SKILL.md` — flat, one level only
+   - Knowledge: `knowledge/<category>/<slug>.md` — can be nested, shareable
+   - If adding related skills (e.g. rag + pinecone), plan all files together and note cross-references before drafting
    - Use lowercase kebab-case. Ask if unclear.
 
-3. **Draft both files** and show them to the user:
-   - `SKILL.md`: correct frontmatter (`name`, `description`, `when_to_use`, `allowed-tools`) + one instruction: read the knowledge file via `${CLAUDE_SKILL_DIR}/../../knowledge/<topic>/<slug>.md` and apply it
-   - `knowledge/<slug>.md`: full content — env vars, code patterns, env template with empty values, source reference
+3. **Draft all files** and show them to the user:
+   - `SKILL.md`: correct frontmatter (`name`, `description`, `when_to_use`, `allowed-tools`) + instructions to read knowledge file(s) via `${CLAUDE_SKILL_DIR}/../../knowledge/<category>/<slug>.md`
+   - `knowledge/<category>/<slug>.md`: full content — env vars, code patterns, gotchas, source reference. Generic patterns only; cite specific projects as examples, never hardcode project-specific data.
 
 4. **Wait for confirmation** before writing anything.
 
-5. **Write both files**, update `README.md` knowledge table, bump patch version in `.claude-plugin/plugin.json`, commit and push:
+5. **Write all files**, update `README.md` (add row to knowledge table for each new knowledge file, add row to skills table for each new skill), bump patch version in `.claude-plugin/plugin.json`, commit and push:
    ```shell
    git -C /tmp/phucbm-skills add .
    git -C /tmp/phucbm-skills commit -m "skill: add <topic>"
@@ -42,6 +50,8 @@ Each topic gets TWO files:
 
 ## Rules
 - Never include real API keys or secrets — keep env blocks with empty values as templates
-- Always show both files and wait for confirmation before pushing
+- Always show all files and wait for confirmation before pushing
 - `SKILL.md` stays thin — frontmatter + a few lines, content belongs in `knowledge/`
 - Always use `${CLAUDE_SKILL_DIR}/../../knowledge/...` to reference knowledge files
+- When a skill references shared knowledge, note it explicitly in the SKILL.md
+- Knowledge files are generic — mention specific projects only as examples, never hardcode project-specific data
