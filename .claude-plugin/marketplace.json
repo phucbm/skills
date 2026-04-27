@@ -28,6 +28,14 @@
         "repo": "phucbm/registry-system"
       },
       "description": "Manage shadcn-compatible component registry — create, validate, and push components"
+    },
+    {
+      "name": "wp-blocks-dev",
+      "source": {
+        "source": "github",
+        "repo": "phucbm/wp-blocks-dev"
+      },
+      "description": "Scaffold, audit and manage custom ACF Gutenberg blocks for WordPress with Tailwind CSS integration."
     }
   ]
 }
