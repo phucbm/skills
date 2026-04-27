@@ -49,6 +49,9 @@ allowed-tools: Bash Read Write Edit
 6. Confirm the push URL to the user.
 
 ## Rules
+- Follow Anthropic's official skill writing best practices:
+  https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md
+  Key points: `description` is the primary trigger mechanism — be specific and slightly pushy to avoid undertriggering; keep SKILL.md under 500 lines; use bundled resources for large content.
 - Never include real API keys or secrets — keep env blocks with empty values as templates
 - Always show all files and wait for confirmation before pushing
 - `SKILL.md` stays thin — frontmatter + a few lines, content belongs in `knowledge/`

@@ -47,6 +47,9 @@ allowed-tools: Bash Read Write Edit
 6. Confirm the push URL to the user.
 
 ## Rules
+- Follow Anthropic's official skill writing best practices:
+  https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md
+  Key points: `description` is the primary trigger — keep it specific and slightly pushy; prefer surgical edits to stay under 500 lines.
 - Never silently overwrite — always show the diff first
 - If README.md description for this topic changed, update that row too
 - Prefer surgical edits over full rewrites
