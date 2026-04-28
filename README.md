@@ -37,6 +37,7 @@ All plugins available from the `phucbm` marketplace:
 | RAG Pipeline | [rag/pipeline.md](knowledge/rag/pipeline.md) | chunk→embed→upsert→query pattern, prompt injection, switchable embeddings, auto-ingest |
 | Pinecone | [pinecone/setup.md](knowledge/pinecone/setup.md) | Vector DB setup, batch upsert, semantic query, metadata filter with semantic fallback |
 | WP Blocks Dev | [wp-blocks-dev/overview.md](knowledge/wp-blocks-dev/overview.md) | Pointer to phucbm/wp-blocks-dev plugin — init, create-block, audit skills |
+| GitHub Actions publish-npm | [github-actions/publish-npm.md](knowledge/github-actions/publish-npm.md) | Composite action to auto-publish npm on release — token or OIDC, workflow templates, gotchas |
 
 ## Managing this repo
 
@@ -49,3 +50,4 @@ All plugins available from the `phucbm` marketplace:
 | [rag](skills/rag/SKILL.md) | Build a RAG pipeline — chunk, embed, store, query, inject into prompt |
 | [pinecone](skills/pinecone/SKILL.md) | Set up Pinecone as the vector DB in a RAG pipeline |
 | [wp-blocks-dev](skills/wp-blocks-dev/SKILL.md) | Scaffold, audit and manage ACF Gutenberg blocks with Tailwind CSS |
+| [publish-npm](skills/publish-npm/SKILL.md) | Auto-publish npm package on GitHub release via token or OIDC |
