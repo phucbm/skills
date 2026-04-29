@@ -1,6 +1,7 @@
 # skills
 
 Personal knowledge base for Claude Code — patterns and integrations observed across projects.
+<img width="947" height="581" alt="Screenshot 2026-04-29 at 10 14 41 (1)" src="https://github.com/user-attachments/assets/856cf0b9-deea-426c-8d09-97f58d6758b0" />
 
 ## Install
 
