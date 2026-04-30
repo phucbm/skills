@@ -6,4 +6,4 @@ allowed-tools: Bash, Read, Edit, Write
 ---
 
 Read the full migration guide before proceeding:
-`knowledge/cloudflare/nextjs-migration.md`
+[`@/knowledge/cloudflare/nextjs-migration.md`](/knowledge/cloudflare/nextjs-migration.md)
