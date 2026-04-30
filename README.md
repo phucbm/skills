@@ -46,23 +46,26 @@ Update when new skills are released:
 
 Skills I use across projects.
 
-### Repo management
+### Productivity
 
-- **[add-skill](skills/add-skill/SKILL.md)** - Summarize knowledge from the current project and push it to this repo.
-- **[update-skill](skills/update-skill/SKILL.md)** - Diff and update an existing knowledge entry.
-- **[learn](skills/learn/SKILL.md)** - Scan any repo, diff against existing skills, and suggest what to save or update.
+- **[add-skill](skills/productivity/add-skill/SKILL.md)** - Summarize knowledge from the current project and push it to this repo.
+- **[update-skill](skills/productivity/update-skill/SKILL.md)** - Diff and update an existing knowledge entry.
+- **[learn](skills/productivity/learn/SKILL.md)** - Scan any repo, diff against existing skills, and suggest what to save or update.
 
-### Integrations
+### AI
 
-- **[vercel-ai-gateway](skills/vercel-ai-gateway/SKILL.md)** - Set up Vercel AI Gateway for multi-provider AI access.
-- **[rag](skills/rag/SKILL.md)** - Build a RAG pipeline - chunk, embed, store, query, inject into prompt.
-- **[pinecone](skills/pinecone/SKILL.md)** - Set up Pinecone as the vector DB in a RAG pipeline.
-- **[groq](skills/groq/SKILL.md)** - Integrate GROQ LLM streaming into a project.
-- **[dexie](skills/dexie/SKILL.md)** - Set up Dexie.js (IndexedDB) in a local-first Next.js + React + TypeScript app.
-- **[counterapi](skills/counterapi/SKILL.md)** - Add lightweight hit counters via counterapi.dev v2.
-- **[wp-blocks-dev](skills/wp-blocks-dev/SKILL.md)** - Scaffold, audit and manage ACF Gutenberg blocks with Tailwind CSS.
-- **[publish-npm](skills/publish-npm/SKILL.md)** - Auto-publish npm package on GitHub release via token or OIDC.
-- **[cloudflare-pages](skills/cloudflare-pages/SKILL.md)** - Migrate a Next.js app to Cloudflare Pages, pick the right adapter, and diagnose worker size issues.
+- **[vercel-ai-gateway](skills/ai/vercel-ai-gateway/SKILL.md)** - Set up Vercel AI Gateway for multi-provider AI access.
+- **[rag](skills/ai/rag/SKILL.md)** - Build a RAG pipeline - chunk, embed, store, query, inject into prompt.
+- **[pinecone](skills/ai/pinecone/SKILL.md)** - Set up Pinecone as the vector DB in a RAG pipeline.
+- **[groq](skills/ai/groq/SKILL.md)** - Integrate GROQ LLM streaming into a project.
+
+### Engineering
+
+- **[dexie](skills/engineering/dexie/SKILL.md)** - Set up Dexie.js (IndexedDB) in a local-first Next.js + React + TypeScript app.
+- **[counterapi](skills/engineering/counterapi/SKILL.md)** - Add lightweight hit counters via counterapi.dev v2.
+- **[wp-blocks-dev](skills/engineering/wp-blocks-dev/SKILL.md)** - Scaffold, audit and manage ACF Gutenberg blocks with Tailwind CSS.
+- **[publish-npm](skills/engineering/publish-npm/SKILL.md)** - Auto-publish npm package on GitHub release via token or OIDC.
+- **[cloudflare-pages](skills/engineering/cloudflare-pages/SKILL.md)** - Migrate a Next.js app to Cloudflare Pages, pick the right adapter, and diagnose worker size issues.
 
 ---
 

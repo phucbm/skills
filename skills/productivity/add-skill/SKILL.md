@@ -6,10 +6,10 @@ allowed-tools: Bash Read Write Edit
 
 ## Structure
 
-### Skills — always flat, one level deep
-- `skills/<topic>/SKILL.md` — thin wrapper: frontmatter + pointer(s) to knowledge file(s)
-- NEVER nest: `skills/vercel/ai-gateway/SKILL.md` breaks plugin discovery — use `skills/vercel-ai-gateway/SKILL.md`
-- One skill per topic, kebab-case: `skills/vercel-ai-gateway/`, `skills/pinecone/`, `skills/rag/`
+### Skills — nested under a bucket
+- `skills/<bucket>/<topic>/SKILL.md` — thin wrapper: frontmatter + pointer(s) to knowledge file(s)
+- Buckets: `ai/` (LLM/vector/RAG), `engineering/` (libraries, tooling, deployment), `productivity/` (skills-repo management)
+- One skill per topic, kebab-case: `skills/ai/vercel-ai-gateway/`, `skills/engineering/dexie/`, `skills/productivity/learn/`
 
 ### Knowledge — namespaced, shareable
 - `knowledge/<category>/<slug>.md` — the actual content
@@ -30,7 +30,7 @@ allowed-tools: Bash Read Write Edit
    > "I found a related entry: `knowledge/groq/streaming-integration.md` — update that instead, or add a new file?"
 
 2. **Determine paths**:
-   - Skill: `skills/<topic>/SKILL.md` — flat, one level only
+   - Skill: `skills/<bucket>/<topic>/SKILL.md` — pick the right bucket (`ai/`, `engineering/`, `productivity/`)
    - Knowledge: `knowledge/<category>/<slug>.md` — can be nested, shareable
    - If adding related skills (e.g. rag + pinecone), plan all files together and note cross-references before drafting
    - Use lowercase kebab-case. Ask if unclear.
