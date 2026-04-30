@@ -5,4 +5,4 @@ when_to_use: When the user wants to auto-publish an npm package on GitHub releas
 allowed-tools: Read, Edit, Write, Bash
 ---
 
-Read `${CLAUDE_SKILL_DIR}/../../knowledge/github-actions/publish-npm.md` for full setup, workflow templates, inputs reference, and gotchas.
+Read [`@/knowledge/github-actions/publish-npm.md`](/knowledge/github-actions/publish-npm.md) for full setup, workflow templates, inputs reference, and gotchas.

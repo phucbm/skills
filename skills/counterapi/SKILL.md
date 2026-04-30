@@ -12,4 +12,4 @@ allowed-tools:
   - Bash
 ---
 
-Read `${CLAUDE_SKILL_DIR}/../../knowledge/counterapi/usage.md` and apply the patterns there.
+Read [`@/knowledge/counterapi/usage.md`](/knowledge/counterapi/usage.md) and apply the patterns there.

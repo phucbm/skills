@@ -6,5 +6,5 @@ allowed-tools: Bash Read Write Edit
 ---
 
 Read and apply:
-${CLAUDE_SKILL_DIR}/../../knowledge/rag/pipeline.md
-${CLAUDE_SKILL_DIR}/../../knowledge/pinecone/setup.md
+- [@/knowledge/rag/pipeline.md](/knowledge/rag/pipeline.md)
+- [@/knowledge/pinecone/setup.md](/knowledge/pinecone/setup.md)

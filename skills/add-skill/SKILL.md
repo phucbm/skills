@@ -34,7 +34,7 @@ allowed-tools: Bash Read Write Edit
    - Use lowercase kebab-case. Ask if unclear.
 
 3. **Draft all files** and show them to the user:
-   - `SKILL.md`: correct frontmatter (`name`, `description`, `when_to_use`, `allowed-tools`) + instructions to read knowledge file(s) via `${CLAUDE_SKILL_DIR}/../../knowledge/<category>/<slug>.md`
+   - `SKILL.md`: correct frontmatter (`name`, `description`, `when_to_use`, `allowed-tools`) + instructions to read knowledge file(s) using the ref format below
    - `knowledge/<category>/<slug>.md`: full content — env vars, code patterns, gotchas, source reference. Generic patterns only; cite specific projects as examples, never hardcode project-specific data.
 
 4. **Wait for confirmation** before writing anything.
@@ -55,6 +55,13 @@ allowed-tools: Bash Read Write Edit
 - Never include real API keys or secrets — keep env blocks with empty values as templates
 - Always show all files and wait for confirmation before pushing
 - `SKILL.md` stays thin — frontmatter + a few lines, content belongs in `knowledge/`
-- Always use `${CLAUDE_SKILL_DIR}/../../knowledge/...` to reference knowledge files
+- Always reference knowledge files as clickable markdown links using this format:
+  - Single ref (inline): `Read [\`@/knowledge/<category>/<slug>.md\`](/knowledge/<category>/<slug>.md) and apply...`
+  - Multiple refs (list):
+    ```
+    Read and apply:
+    - [@/knowledge/<category>/<slug>.md](/knowledge/<category>/<slug>.md)
+    - [@/knowledge/<category>/<slug>.md](/knowledge/<category>/<slug>.md)
+    ```
 - When a skill references shared knowledge, note it explicitly in the SKILL.md
 - Knowledge files are generic — mention specific projects only as examples, never hardcode project-specific data

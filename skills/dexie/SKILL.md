@@ -5,4 +5,4 @@ when_to_use: When the user works with Dexie.js — setting up a database, defini
 allowed-tools: Read, Edit, Write, Bash, Glob, Grep
 ---
 
-Read `${CLAUDE_SKILL_DIR}/../../knowledge/dexie/patterns.md` and apply the patterns and conventions described there.
+Read [`@/knowledge/dexie/patterns.md`](/knowledge/dexie/patterns.md) and apply the patterns and conventions described there.

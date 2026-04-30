@@ -6,4 +6,4 @@ allowed-tools: Bash Read Write Edit
 ---
 
 Read and apply:
-${CLAUDE_SKILL_DIR}/../../knowledge/wp-blocks-dev/overview.md
+- [@/knowledge/wp-blocks-dev/overview.md](/knowledge/wp-blocks-dev/overview.md)

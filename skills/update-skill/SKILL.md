@@ -54,4 +54,7 @@ allowed-tools: Bash Read Write Edit
 - If README.md description for this topic changed, update that row too
 - Prefer surgical edits over full rewrites
 - `SKILL.md` rarely needs updating — only if frontmatter `description`/`when_to_use` or knowledge pointers change
+- Knowledge file refs must use clickable markdown links:
+  - Single: `Read [\`@/knowledge/<category>/<slug>.md\`](/knowledge/<category>/<slug>.md) and apply...`
+  - Multiple: `Read and apply:` followed by a bullet list of `[@/knowledge/...](...)` links
 - Knowledge files are generic — examples referencing specific projects are fine, but never add project-specific data as facts

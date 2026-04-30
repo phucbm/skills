@@ -6,4 +6,4 @@ allowed-tools: Bash Read Write Edit
 ---
 
 Read and apply:
-${CLAUDE_SKILL_DIR}/../../knowledge/vercel/ai-gateway.md
+- [@/knowledge/vercel/ai-gateway.md](/knowledge/vercel/ai-gateway.md)
