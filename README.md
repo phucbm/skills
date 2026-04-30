@@ -62,6 +62,7 @@ Skills I use across projects.
 - **[counterapi](skills/counterapi/SKILL.md)** - Add lightweight hit counters via counterapi.dev v2.
 - **[wp-blocks-dev](skills/wp-blocks-dev/SKILL.md)** - Scaffold, audit and manage ACF Gutenberg blocks with Tailwind CSS.
 - **[publish-npm](skills/publish-npm/SKILL.md)** - Auto-publish npm package on GitHub release via token or OIDC.
+- **[cloudflare-pages](skills/cloudflare-pages/SKILL.md)** - Migrate a Next.js app to Cloudflare Pages, pick the right adapter, and diagnose worker size issues.
 
 ---
 
@@ -80,6 +81,7 @@ Reference files Claude reads to apply proven patterns.
 | Pinecone | [pinecone/setup.md](knowledge/pinecone/setup.md) | Vector DB setup, batch upsert, semantic query, metadata filter with semantic fallback |
 | WP Blocks Dev | [wp-blocks-dev/overview.md](knowledge/wp-blocks-dev/overview.md) | Pointer to phucbm/wp-blocks-dev plugin - init, create-block, audit skills |
 | GitHub Actions publish-npm | [github-actions/publish-npm.md](knowledge/github-actions/publish-npm.md) | Composite action to auto-publish npm on release - token or OIDC, workflow templates, gotchas |
+| Cloudflare Pages | [cloudflare/nextjs-migration.md](knowledge/cloudflare/nextjs-migration.md) | Migrate Next.js from Vercel to Cloudflare - adapter comparison, worker size limits, pitfalls |
 
 ---
 
