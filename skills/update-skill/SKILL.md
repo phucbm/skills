@@ -16,6 +16,8 @@ allowed-tools: Bash Read Write Edit
 
 ## Steps
 
+0. **Read the prompt** — if arguments were passed with the slash command (e.g. `/update-skill add the new retry logic to my groq skill`), treat them as the user's description of what to update and proceed to step 1. If no arguments were given, ask: "Which skill or knowledge do you want to update, and what should change?" and wait for the answer before continuing.
+
 1. **Pull latest**:
    ```shell
    gh repo clone phucbm/skills /tmp/phucbm-skills 2>/dev/null || git -C /tmp/phucbm-skills pull

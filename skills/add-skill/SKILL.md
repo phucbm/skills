@@ -19,6 +19,8 @@ allowed-tools: Bash Read Write Edit
 
 ## Steps
 
+0. **Read the prompt** — if arguments were passed with the slash command (e.g. `/add-skill I want to save the Stripe webhook pattern from this project`), treat them as the user's description of what to add and proceed to step 1. If no arguments were given, ask: "What skill or knowledge do you want to add?" and wait for the answer before continuing.
+
 1. **Check existing knowledge** — pull latest and scan all files in `skills/` and `knowledge/`:
    ```shell
    gh repo clone phucbm/skills /tmp/phucbm-skills 2>/dev/null || git -C /tmp/phucbm-skills pull
