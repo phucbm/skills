@@ -42,20 +42,19 @@ Produce two lists with **recommended file paths for every item**:
 **NEW** — topics found in codebase with no match in existing knowledge/skills:
 ```
 [N] Topic name — one-line reason it's worth saving
-    skill:     skills/<bucket>/<topic>/SKILL.md
+    skill:     skills/<topic>/SKILL.md
     knowledge: knowledge/<category>/<slug>.md
 ```
-Buckets: `ai/` (LLM/vector/RAG), `engineering/` (libraries, tooling, deployment), `productivity/` (skills-repo management).
 If multiple new topics share knowledge (e.g. rag + pinecone), show the relationship:
 ```
 [N] RAG pipeline — generic chunk→embed→query pattern, reusable with any vector DB
-    skill:     skills/ai/rag/SKILL.md
+    skill:     skills/rag/SKILL.md
     knowledge: knowledge/rag/concepts.md
 
 [N+1] Pinecone — vector DB setup, upsert, query, metadata filters
-    skill:     skills/ai/pinecone/SKILL.md
+    skill:     skills/pinecone/SKILL.md
     knowledge: knowledge/pinecone/setup.md
-    note:      skills/ai/rag will also reference knowledge/pinecone/setup.md
+    note:      skills/rag will also reference knowledge/pinecone/setup.md
 ```
 
 **UPDATE** — topics that overlap an existing entry but the codebase shows something new:
@@ -73,7 +72,7 @@ Skip topics that are: trivial to look up, fully covered already, or project-spec
 Present the full list and ask: "Which ones to save? (e.g. 1, 3, update 4 — or 'all')"
 
 Wait for response. Then for each selected item:
-- **NEW picks** → invoke `add-skill` flow: draft `skills/<bucket>/<topic>/SKILL.md` + `knowledge/<category>/<slug>.md`, show both, confirm, push
+- **NEW picks** → invoke `add-skill` flow: draft `skills/<topic>/SKILL.md` + `knowledge/<category>/<slug>.md`, show both, confirm, push
 - **UPDATE picks** → invoke `update-skill` flow: show diff of proposed changes to existing knowledge file, confirm, push
 
 Each item is confirmed individually. Never batch-push without showing what will change.
@@ -84,7 +83,7 @@ After all pushes: confirm final state and remind user to run `/plugin marketplac
 - Phase 1 reads README.md only — no file tree scanning of the skills repo (saves tokens)
 - Phase 2 reads breadth-first — top-level files only, don't recurse into deep source dirs
 - Always output recommended file paths in Phase 3 — user must confirm names before any files are written
-- Skills are nested: `skills/<bucket>/<topic>/SKILL.md` — always include the bucket in suggested paths
+- Skills are flat: `skills/<topic>/SKILL.md` — one level only, no bucket subdirectories
 - Knowledge can be namespaced: `knowledge/<category>/<slug>.md` — flag when shared across skills
 - Never suggest saving secrets, API keys, or project-specific data (user IDs, URLs, credentials)
 - Knowledge files are generic — cite specific projects as examples only, never as facts

@@ -6,9 +6,8 @@ allowed-tools: Bash Read Write Edit
 
 ## Structure
 
-### Skills — nested under a bucket
-- `skills/<bucket>/<topic>/SKILL.md` — thin wrapper. Update only if trigger wording, description, or knowledge pointers change.
-- Buckets: `ai/`, `engineering/`, `productivity/` — do not move a skill between buckets without updating README.md.
+### Skills — flat
+- `skills/<topic>/SKILL.md` — thin wrapper. Update only if trigger wording, description, or knowledge pointers change.
 
 ### Knowledge — namespaced, shareable
 - `knowledge/<category>/<slug>.md` — the actual content. This is usually what gets updated.
@@ -25,7 +24,7 @@ allowed-tools: Bash Read Write Edit
 
 2. **Surface related files** — scan `skills/` and `knowledge/` for anything related to the topic. List all candidates and flag shared knowledge files:
    > "Files that may need updating:
-   > - `skills/ai/groq/SKILL.md` (trigger description)
+   > - `skills/groq/SKILL.md` (trigger description)
    > - `knowledge/groq/streaming-integration.md` (actual content — also referenced by skills/X)
    > Should I update both, or just the knowledge file?"
 
