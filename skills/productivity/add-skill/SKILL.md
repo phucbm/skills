@@ -14,7 +14,7 @@ allowed-tools: Bash Read Write Edit
 ### Knowledge — namespaced, shareable
 - `knowledge/<category>/<slug>.md` — the actual content
 - A knowledge file can be referenced by multiple skills
-  e.g. `knowledge/rag/concepts.md` read by both `skills/rag/SKILL.md` and `skills/pinecone/SKILL.md`
+  e.g. `knowledge/rag/concepts.md` read by both `skills/ai/rag/SKILL.md` and `skills/ai/pinecone/SKILL.md`
 - A single session can produce multiple skills that share knowledge files — plan all files together before drafting
 
 ## Steps
