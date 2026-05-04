@@ -56,13 +56,26 @@ repo: data/*.json  ←──  source of truth
 
 ---
 
-## 2. Env vars (Vite example)
+## 2. Env vars + framework notes
 
+**Vite (browser-side — acceptable for public repos with narrow app permissions):**
 ```env
 VITE_GITHUB_APP_ID=123456
 VITE_GITHUB_APP_INSTALLATION_ID=78901234
 VITE_GITHUB_APP_PRIVATE_KEY="-----BEGIN RSA PRIVATE KEY-----\nMIIE...\n-----END RSA PRIVATE KEY-----"
 ```
+
+> `VITE_*` vars ship to the browser bundle. Acceptable only when the repo is public and the GitHub App has narrow permissions (one repo, no org access) — worst case someone uses the key to open a PR, still gated by maintainer review.
+
+**Next.js / Nuxt — move auth server-side. Never use `NEXT_PUBLIC_*` for the private key.**
+```env
+# .env (not NEXT_PUBLIC_*)
+GITHUB_APP_ID=123456
+GITHUB_APP_INSTALLATION_ID=78901234
+GITHUB_APP_PRIVATE_KEY="-----BEGIN RSA PRIVATE KEY-----\nMIIE...\n-----END RSA PRIVATE KEY-----"
+```
+
+Call `getInstallationToken()` only inside a Server Action (`'use server'`) or API route (`/app/api/contribute/route.ts`). Browser posts `{ data }` → server mints JWT → exchanges for token → creates PR → returns PR URL.
 
 > Store the PEM as a single line with literal `\n` separators. Reconstruct at runtime with `.replace(/\\n/g, '\n')`.
 > For CI/CD: set as repo secrets, never commit the `.pem` file.
@@ -367,3 +380,4 @@ async function contributeEdit(data: object, existingPath: string, ...): Promise<
 | Installation ID hard to find | GitHub → Settings → Installed GitHub Apps → click app → URL: `/installations/<id>` |
 | Rate limits on file reads | Compile to `public/data/index.json` at build time — one fetch, no API calls at runtime |
 | `source` field confusion | Inject `source: 'repo'` in build script; app uses it to distinguish repo vs local records |
+| Private key in Next.js | Never use `NEXT_PUBLIC_*` — key ends up in client bundle. Use server actions or API routes only |
