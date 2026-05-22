@@ -60,6 +60,7 @@ Skills I use across projects.
 - **[cloudflare-pages](skills/cloudflare-pages/SKILL.md)** - Migrate a Next.js app to Cloudflare Pages, pick the right adapter, and diagnose worker size issues.
 - **[discord-as-backend](skills/discord-as-backend/SKILL.md)** - Use a Discord Forum channel as a database or a Discord webhook as a form submission inbox.
 - **[github-as-db](skills/github-as-db/SKILL.md)** - Use a GitHub repo as a zero-infra data store — JSON files as records, GitHub App bot as write layer, build-time index as read layer. Community contribute via PR or personal CRUD, no auth service, no database.
+- **[claskit](skills/claskit/SKILL.md)** - Autonomous Claude Code task runner — write task specs as Markdown, run claskit, watch Claude implement them.
 
 ---
 
@@ -81,6 +82,7 @@ Reference files Claude reads to apply proven patterns.
 | Cloudflare Pages | [cloudflare/nextjs-migration.md](knowledge/cloudflare/nextjs-migration.md) | Migrate Next.js from Vercel to Cloudflare - adapter comparison, worker size limits, pitfalls |
 | Discord | [discord/web-patterns.md](knowledge/discord/web-patterns.md) | Forum channel as DB (bookmarks), webhook as form inbox — two zero-infra patterns |
 | GitHub as DB | [github/github-as-db.md](knowledge/github/github-as-db.md) | Repo as zero-infra data store — GitHub App CRUD, build-time index (rate limit fix), PR contribute flow |
+| claskit | [claskit/usage.md](knowledge/claskit/usage.md) | Setup, commands, spec format, and how to create specs via /claskit skill |
 
 ---
 
