@@ -36,6 +36,11 @@
         "repo": "phucbm/wp-blocks-dev"
       },
       "description": "Scaffold, audit and manage custom ACF Gutenberg blocks for WordPress with Tailwind CSS integration."
+    },
+    {
+      "name": "claskit",
+      "source": "./",
+      "description": "Autonomous Claude Code task runner — write task specs as Markdown, run claskit, watch Claude implement them"
     }
   ]
 }
