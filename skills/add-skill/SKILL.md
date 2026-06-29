@@ -6,41 +6,36 @@ allowed-tools: Bash Read Write Edit
 
 ## Structure
 
-### Skills — flat
-- `skills/<topic>/SKILL.md` — thin wrapper: frontmatter + pointer(s) to knowledge file(s)
-- One skill per topic, kebab-case: `skills/vercel-ai-gateway/`, `skills/dexie/`, `skills/learn/`
+Each skill is a folder with a single `SKILL.md` — all content inlined directly, no separate knowledge files.
 
-### Knowledge — namespaced, shareable
-- `knowledge/<category>/<slug>.md` — the actual content
-- A knowledge file can be referenced by multiple skills
-  e.g. `knowledge/rag/concepts.md` read by both `skills/rag/SKILL.md` and `skills/pinecone/SKILL.md`
-- A single session can produce multiple skills that share knowledge files — plan all files together before drafting
+- `skills/<topic>/SKILL.md` — frontmatter + full content
+- One skill per topic, kebab-case: `skills/vercel-ai-gateway/`, `skills/dexie/`, `skills/learn/`
+- Complex skills (like `wp-blocks-dev`) may have sub-skills and additional files co-located inside the skill folder
 
 ## Steps
 
 0. **Read the prompt** — if arguments were passed with the slash command (e.g. `/add-skill I want to save the Stripe webhook pattern from this project`), treat them as the user's description of what to add and proceed to step 1. If no arguments were given, ask: "What skill or knowledge do you want to add?" and wait for the answer before continuing.
 
-1. **Check existing knowledge** — pull latest and scan all files in `skills/` and `knowledge/`:
+1. **Check existing skills** — pull latest and scan all files in `skills/`:
    ```shell
    gh repo clone phucbm/skills /tmp/phucbm-skills 2>/dev/null || git -C /tmp/phucbm-skills pull
-   find /tmp/phucbm-skills/skills /tmp/phucbm-skills/knowledge -name "*.md" | sort
+   find /tmp/phucbm-skills/skills -name "SKILL.md" | sort
    ```
-   If a related entry exists, tell the user before proceeding:
-   > "I found a related entry: `knowledge/groq/streaming-integration.md` — update that instead, or add a new file?"
+   If a related skill exists, tell the user before proceeding:
+   > "I found a related skill: `skills/groq/SKILL.md` — update that instead, or add a new skill?"
 
-2. **Determine paths**:
+2. **Determine path**:
    - Skill: `skills/<topic>/SKILL.md` — flat, one level only
-   - Knowledge: `knowledge/<category>/<slug>.md` — can be nested, shareable
-   - If adding related skills (e.g. rag + pinecone), plan all files together and note cross-references before drafting
    - Use lowercase kebab-case. Ask if unclear.
 
-3. **Draft all files** and show them to the user:
-   - `SKILL.md`: correct frontmatter (`name`, `description`, `when_to_use`, `allowed-tools`) + instructions to read knowledge file(s) using the ref format below
-   - `knowledge/<category>/<slug>.md`: full content — env vars, code patterns, gotchas, source reference. Generic patterns only; cite specific projects as examples, never hardcode project-specific data.
+3. **Draft the SKILL.md** and show it to the user:
+   - Correct frontmatter (`name`, `description`, `when_to_use`, `allowed-tools`)
+   - Full content inlined — env vars, code patterns, gotchas, source references
+   - Generic patterns only; cite specific projects as examples, never hardcode project-specific data
 
 4. **Wait for confirmation** before writing anything.
 
-5. **Write all files**, update `README.md` (add row to knowledge table for each new knowledge file, add row to skills table for each new skill), bump patch version in `.claude-plugin/plugin.json`, commit and push:
+5. **Write the file**, update `README.md` (add row to skills table), bump patch version in `.claude-plugin/plugin.json`, commit and push:
    ```shell
    git -C /tmp/phucbm-skills add .
    git -C /tmp/phucbm-skills commit -m "skill: add <topic>"
@@ -52,17 +47,83 @@ allowed-tools: Bash Read Write Edit
 ## Rules
 - Follow Anthropic's official skill writing best practices:
   https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md
-  Key points: `description` is the primary trigger mechanism — be specific and slightly pushy to avoid undertriggering; keep SKILL.md under 500 lines; use bundled resources for large content.
+  Key points: `description` is the primary trigger mechanism — be specific and slightly pushy to avoid undertriggering; keep SKILL.md under 500 lines
 - Never include real API keys or secrets — keep env blocks with empty values as templates
-- Always show all files and wait for confirmation before pushing
-- `SKILL.md` stays thin — frontmatter + a few lines, content belongs in `knowledge/`
-- Always reference knowledge files as clickable markdown links using this format:
-  - Single ref (inline): `Read [\`@/knowledge/<category>/<slug>.md\`](/knowledge/<category>/<slug>.md) and apply...`
-  - Multiple refs (list):
-    ```
-    Read and apply:
-    - [@/knowledge/<category>/<slug>.md](/knowledge/<category>/<slug>.md)
-    - [@/knowledge/<category>/<slug>.md](/knowledge/<category>/<slug>.md)
-    ```
-- When a skill references shared knowledge, note it explicitly in the SKILL.md
+- Always show the file and wait for confirmation before pushing
+- All content goes directly in `SKILL.md` — no separate knowledge files
 - Knowledge files are generic — mention specific projects only as examples, never hardcode project-specific data
+
+---
+
+## Plugin Marketplace Management
+
+Claude Code plugins discovered via **marketplaces** — GitHub repo with `.claude-plugin/marketplace.json` listing plugins. Can't install plugin without marketplace listing.
+
+Two-step flow (marketplace added once):
+```shell
+/plugin marketplace add phucbm/skills    # register catalog once
+/plugin install claudify@phucbm          # install individual plugins
+/plugin install skills@phucbm
+```
+
+See newly added plugins after marketplace update:
+```shell
+/plugin marketplace update phucbm
+```
+
+Or enable auto-update: `/plugin` UI → select marketplace → toggle auto-update.
+
+### phucbm marketplace
+
+`phucbm/skills` is canonical marketplace for all phucbm plugins.
+
+One repo acts as both marketplace AND plugin host — `skills` is local (`"source": "./"`) while other plugins (`claudify`, etc.) are external sources.
+
+Current plugins in `.claude-plugin/marketplace.json`:
+| Plugin | Source | Description |
+|---|---|---|
+| `claudify` | `https://github.com/phucbm/claudify` | Bootstrap `.claude/` for any repo |
+| `skills` | `./` | Personal knowledge base |
+| `registry-system` | `https://github.com/phucbm/registry-system` | Manage shadcn-compatible component registry |
+
+### Adding a new phucbm plugin
+
+**Option A — Plugin in own repo:**
+1. Create plugin repo with correct structure
+2. Add entry to `phucbm/skills/.claude-plugin/marketplace.json`:
+   ```json
+   { "name": "my-plugin", "source": "https://github.com/phucbm/my-plugin", "description": "..." }
+   ```
+3. Do NOT add `marketplace.json` to plugin repo — only `plugin.json`
+4. Commit and push `phucbm/skills`
+
+**Option B — Plugin inside phucbm/skills:**
+1. Create `plugins/my-plugin/` with correct structure
+2. Add entry with `"source": "./plugins/my-plugin"`
+
+### Required plugin structure
+```
+my-plugin/
+├── .claude-plugin/
+│   └── plugin.json
+└── skills/
+    └── my-skill/
+        └── SKILL.md
+```
+
+`plugin.json`:
+```json
+{
+  "name": "my-plugin",
+  "displayName": "My Plugin",
+  "version": "1.0.0",
+  "description": "...",
+  "author": { "name": "phucbm", "url": "https://github.com/phucbm" },
+  "repository": "https://github.com/phucbm/my-plugin",
+  "license": "MIT"
+}
+```
+
+**Do NOT add `marketplace.json` to individual plugin repos** — only canonical marketplace repo should have one. Multiple repos with same `"name"` conflict and overwrite each other.
+
+Docs: https://code.claude.com/docs/en/plugin-marketplaces.md

@@ -1,13 +1,20 @@
 {
-  "name": "skills",
-  "displayName": "Skills",
-  "version": "1.1.4",
-  "description": "Personal knowledge base — patterns and integrations across projects",
-  "author": {
-    "name": "phucbm",
-    "url": "https://github.com/phucbm"
-  },
-  "homepage": "https://github.com/phucbm/skills",
-  "repository": "https://github.com/phucbm/skills",
-  "license": "MIT"
+  "name": "phucbm-skills",
+  "skills": [
+    "./skills/add-skill",
+    "./skills/claskit",
+    "./skills/cloudflare-pages",
+    "./skills/counterapi",
+    "./skills/dexie",
+    "./skills/discord-as-backend",
+    "./skills/github-as-db",
+    "./skills/groq",
+    "./skills/learn",
+    "./skills/pinecone",
+    "./skills/publish-npm",
+    "./skills/rag",
+    "./skills/update-skill",
+    "./skills/vercel-ai-gateway",
+    "./skills/wp-blocks-dev"
+  ]
 }
