@@ -38,10 +38,10 @@ A **release** bundles all unreleased changes into a versioned CHANGELOG entry, c
 
    ### <Patch|Minor|Major> Changes
 
-   - [`<short-sha>`](https://github.com/phucbm/skills/commit/<short-sha>) Thanks [@phucbm](https://github.com/phucbm)! - <entry from step 3>
+   - [#<pr-number>](https://github.com/phucbm/skills/pull/<pr-number>) Thanks [@phucbm](https://github.com/phucbm)! - <entry from step 3>
    ```
 
-   Get `<short-sha>` from `git rev-parse --short HEAD`. One bullet per entry. Done when CHANGELOG.md has the new section at the top, below the `# phucbm-skills` heading.
+   Each bullet links to the PR that introduced the change. Run `gh pr list --state merged` to find PR numbers for the relevant commits. One bullet per entry. Done when CHANGELOG.md has the new section at the top, below the `# phucbm-skills` heading.
 
 6. Run:
    ```bash
