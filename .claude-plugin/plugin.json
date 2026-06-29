@@ -1,20 +1,20 @@
 {
   "name": "phucbm-skills",
   "skills": [
-    "./skills/add-skill",
-    "./skills/claskit",
-    "./skills/cloudflare-pages",
-    "./skills/counterapi",
-    "./skills/dexie",
-    "./skills/discord-as-backend",
-    "./skills/github-as-db",
-    "./skills/groq",
-    "./skills/learn",
-    "./skills/pinecone",
-    "./skills/publish-npm",
-    "./skills/rag",
-    "./skills/update-skill",
-    "./skills/vercel-ai-gateway",
-    "./skills/wp-blocks-dev"
+    "./skills/meta/add-skill",
+    "./skills/meta/claskit",
+    "./skills/meta/learn",
+    "./skills/meta/update-skill",
+    "./skills/ai/groq",
+    "./skills/ai/pinecone",
+    "./skills/ai/rag",
+    "./skills/ai/vercel-ai-gateway",
+    "./skills/backend/counterapi",
+    "./skills/backend/dexie",
+    "./skills/backend/discord-as-backend",
+    "./skills/backend/github-as-db",
+    "./skills/deploy/cloudflare-pages",
+    "./skills/deploy/publish-npm",
+    "./skills/wordpress/wp-blocks-dev"
   ]
 }

@@ -6,8 +6,6 @@ My personal knowledge base, reusable skills and reference knowledge observed acr
 
 **Skills** are slash commands that instruct Claude to perform a specific task (e.g. `/add-skill`, `/rag`).
 
-**Knowledge** files are markdown references that Claude reads to apply proven patterns without re-discovering them each session (e.g. GROQ streaming setup, Pinecone schema).
-
 ---
 
 ## Quickstart
@@ -44,45 +42,35 @@ Update when new skills are released:
 
 ## Skills
 
-Skills I use across projects.
+### meta
 
-- **[add-skill](skills/add-skill/SKILL.md)** - Summarize knowledge from the current project and push it to this repo.
-- **[update-skill](skills/update-skill/SKILL.md)** - Diff and update an existing knowledge entry.
-- **[learn](skills/learn/SKILL.md)** - Scan any repo, diff against existing skills, and suggest what to save or update.
-- **[vercel-ai-gateway](skills/vercel-ai-gateway/SKILL.md)** - Set up Vercel AI Gateway for multi-provider AI access.
-- **[rag](skills/rag/SKILL.md)** - Build a RAG pipeline - chunk, embed, store, query, inject into prompt.
-- **[pinecone](skills/pinecone/SKILL.md)** - Set up Pinecone as the vector DB in a RAG pipeline.
-- **[groq](skills/groq/SKILL.md)** - Integrate GROQ LLM streaming into a project.
-- **[dexie](skills/dexie/SKILL.md)** - Set up Dexie.js (IndexedDB) in a local-first Next.js + React + TypeScript app.
-- **[counterapi](skills/counterapi/SKILL.md)** - Add lightweight hit counters via counterapi.dev v2.
-- **[wp-blocks-dev](skills/wp-blocks-dev/SKILL.md)** - Scaffold, audit and manage ACF Gutenberg blocks with Tailwind CSS.
-- **[publish-npm](skills/publish-npm/SKILL.md)** - Auto-publish npm package on GitHub release via token or OIDC.
-- **[cloudflare-pages](skills/cloudflare-pages/SKILL.md)** - Migrate a Next.js app to Cloudflare Pages, pick the right adapter, and diagnose worker size issues.
-- **[discord-as-backend](skills/discord-as-backend/SKILL.md)** - Use a Discord Forum channel as a database or a Discord webhook as a form submission inbox.
-- **[github-as-db](skills/github-as-db/SKILL.md)** - Use a GitHub repo as a zero-infra data store — JSON files as records, GitHub App bot as write layer, build-time index as read layer. Community contribute via PR or personal CRUD, no auth service, no database.
-- **[claskit](skills/claskit/SKILL.md)** - Autonomous Claude Code task runner — write task specs as Markdown, run claskit, watch Claude implement them.
+- **[add-skill](skills/meta/add-skill/SKILL.md)** - Summarize knowledge from the current project and push it to this repo.
+- **[update-skill](skills/meta/update-skill/SKILL.md)** - Diff and update an existing knowledge entry.
+- **[learn](skills/meta/learn/SKILL.md)** - Scan any repo, diff against existing skills, and suggest what to save or update.
+- **[claskit](skills/meta/claskit/SKILL.md)** - Autonomous Claude Code task runner - write task specs as Markdown, run claskit, watch Claude implement them.
 
----
+### ai
 
-## Knowledge
+- **[vercel-ai-gateway](skills/ai/vercel-ai-gateway/SKILL.md)** - Set up Vercel AI Gateway for multi-provider AI access.
+- **[rag](skills/ai/rag/SKILL.md)** - Build a RAG pipeline - chunk, embed, store, query, inject into prompt.
+- **[pinecone](skills/ai/pinecone/SKILL.md)** - Set up Pinecone as the vector DB in a RAG pipeline.
+- **[groq](skills/ai/groq/SKILL.md)** - Integrate GROQ LLM streaming into a project.
 
-Reference files Claude reads to apply proven patterns.
+### backend
 
-| Topic | File | Description |
-|---|---|---|
-| GROQ | [groq/streaming-integration.md](knowledge/groq/streaming-integration.md) | SSE streaming with GROQ API, env setup, response parsing |
-| Claude Plugins | [claude-plugins/marketplace-management.md](knowledge/claude-plugins/marketplace-management.md) | Plugin structure, marketplace setup, adding new phucbm plugins |
-| Dexie | [dexie/patterns.md](knowledge/dexie/patterns.md) | IndexedDB via Dexie.js - schema, querying, useLiveQuery, migrations, SSR constraints |
-| counterapi | [counterapi/usage.md](knowledge/counterapi/usage.md) | Simple hit counters via counterapi.dev v2 - lightweight alternative to GA4/PostHog/Umami |
-| Vercel AI Gateway | [vercel/ai-gateway.md](knowledge/vercel/ai-gateway.md) | Multi-provider AI via `@ai-sdk/gateway`, reasoning middleware, test mock pattern |
-| RAG Pipeline | [rag/pipeline.md](knowledge/rag/pipeline.md) | chunk→embed→upsert→query pattern, prompt injection, switchable embeddings, auto-ingest |
-| Pinecone | [pinecone/setup.md](knowledge/pinecone/setup.md) | Vector DB setup, batch upsert, semantic query, metadata filter with semantic fallback |
-| WP Blocks Dev | [wp-blocks-dev/overview.md](knowledge/wp-blocks-dev/overview.md) | Pointer to phucbm/wp-blocks-dev plugin - init, create-block, audit skills |
-| GitHub Actions publish-npm | [github-actions/publish-npm.md](knowledge/github-actions/publish-npm.md) | Composite action to auto-publish npm on release - token or OIDC, workflow templates, gotchas |
-| Cloudflare Pages | [cloudflare/nextjs-migration.md](knowledge/cloudflare/nextjs-migration.md) | Migrate Next.js from Vercel to Cloudflare - adapter comparison, worker size limits, pitfalls |
-| Discord | [discord/web-patterns.md](knowledge/discord/web-patterns.md) | Forum channel as DB (bookmarks), webhook as form inbox — two zero-infra patterns |
-| GitHub as DB | [github/github-as-db.md](knowledge/github/github-as-db.md) | Repo as zero-infra data store — GitHub App CRUD, build-time index (rate limit fix), PR contribute flow |
-| claskit | [claskit/usage.md](knowledge/claskit/usage.md) | Setup, commands, spec format, and how to create specs via /claskit skill |
+- **[dexie](skills/backend/dexie/SKILL.md)** - Set up Dexie.js (IndexedDB) in a local-first Next.js + React + TypeScript app.
+- **[counterapi](skills/backend/counterapi/SKILL.md)** - Add lightweight hit counters via counterapi.dev v2.
+- **[discord-as-backend](skills/backend/discord-as-backend/SKILL.md)** - Use a Discord Forum channel as a database or a Discord webhook as a form submission inbox.
+- **[github-as-db](skills/backend/github-as-db/SKILL.md)** - Use a GitHub repo as a zero-infra data store.
+
+### deploy
+
+- **[publish-npm](skills/deploy/publish-npm/SKILL.md)** - Auto-publish npm package on GitHub release via token or OIDC.
+- **[cloudflare-pages](skills/deploy/cloudflare-pages/SKILL.md)** - Migrate a Next.js app to Cloudflare Pages, pick the right adapter, and diagnose worker size issues.
+
+### wordpress
+
+- **[wp-blocks-dev](skills/wordpress/wp-blocks-dev/SKILL.md)** - Scaffold, audit and manage ACF Gutenberg blocks with Tailwind CSS.
 
 ---
 
