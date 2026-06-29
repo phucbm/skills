@@ -52,4 +52,10 @@ A **release** bundles all unreleased changes into a versioned CHANGELOG entry, c
    ```
    Done when push succeeds and tag is on remote.
 
-Report the new version and the CHANGELOG entry to the user.
+7. Create a GitHub release using the CHANGELOG entries as notes:
+   ```bash
+   gh release create v<version> --title "v<version>" --notes "<changelog entries>"
+   ```
+   Done when the release URL is returned.
+
+Report the new version, CHANGELOG entry, and GitHub release URL to the user.
