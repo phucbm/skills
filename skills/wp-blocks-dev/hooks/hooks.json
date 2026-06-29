@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if echo '$CLAUDE_TOOL_INPUT' | grep -q 'fields.json'; then echo 'REMINDER: fields.json was modified — run `date +%s` and update the `modified` field in this file.'; fi"
+          }
+        ]
+      }
+    ]
+  }
+}
