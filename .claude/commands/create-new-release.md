@@ -2,7 +2,7 @@
 description: Cut a new release — bump version, write CHANGELOG entry, commit and tag.
 ---
 
-A **release** bundles all unreleased changes into a versioned CHANGELOG entry, bumps `package.json`, commits, and tags. Run this on `main` after merging the PRs you want to ship.
+A **release** bundles all unreleased changes into a versioned CHANGELOG entry, commits, and tags. Run this on `main` after merging the PRs you want to ship. Version is tracked via git tags only — no `package.json` needed.
 
 ## Steps
 
@@ -29,7 +29,7 @@ A **release** bundles all unreleased changes into a versioned CHANGELOG entry, b
 
    Wait for the answer. Done when entries are confirmed.
 
-4. Read `package.json`. Bump `version` field according to semver and the bump type from step 2. Done when new version string is valid semver.
+4. Get current version from `git describe --tags --abbrev=0`. Bump according to semver and the bump type from step 2. Done when new version string is valid semver.
 
 5. Read `CHANGELOG.md`. Prepend a new version section using this exact format:
 
@@ -43,11 +43,9 @@ A **release** bundles all unreleased changes into a versioned CHANGELOG entry, b
 
    Get `<short-sha>` from `git rev-parse --short HEAD`. One bullet per entry. Done when CHANGELOG.md has the new section at the top, below the `# phucbm-skills` heading.
 
-6. Write the bumped version back to `package.json`. Done when `package.json` version matches the new version.
-
-7. Run:
+6. Run:
    ```bash
-   git add CHANGELOG.md package.json
+   git add CHANGELOG.md
    git commit -m "chore: release v<version>"
    git tag v<version>
    git push && git push --tags
