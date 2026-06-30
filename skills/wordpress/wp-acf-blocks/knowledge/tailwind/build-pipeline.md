@@ -60,7 +60,7 @@ Always commit `assets/css/style.generated.css` before deploying — the server c
 
 ```bash
 mkdir -p themes/{slug}/scripts themes/{slug}/assets/css
-cp $(claude plugin path wp-blocks-dev)/templates/tailwind.js themes/{slug}/scripts/tailwind.js
+cp $(claude plugin path wp-acf-blocks)/templates/tailwind.js themes/{slug}/scripts/tailwind.js
 ```
 
 Then copy [`tailwind-theme-loader.php`](https://github.com/phucbm/wp-mu-plugins/blob/main/tailwind-theme-loader.php) into `mu-plugins/`.

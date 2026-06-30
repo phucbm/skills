@@ -1,9 +1,9 @@
 ---
 name: init
-description: Initialize a new WordPress theme with the wp-blocks-dev block development workflow
+description: Initialize a new WordPress theme with the wp-acf-blocks block development workflow
 ---
 
-Read `[@/knowledge/wp-blocks-dev/acf-blocks/conventions.md](/knowledge/wp-blocks-dev/acf-blocks/conventions.md)`, `[@/knowledge/wp-blocks-dev/tailwind/build-pipeline.md](/knowledge/wp-blocks-dev/tailwind/build-pipeline.md)`, and `[@/knowledge/wp-blocks-dev/typescript/tsup-setup.md](/knowledge/wp-blocks-dev/typescript/tsup-setup.md)`, then:
+Read `[@/knowledge/wp-acf-blocks/acf-blocks/conventions.md](/knowledge/wp-acf-blocks/acf-blocks/conventions.md)`, `[@/knowledge/wp-acf-blocks/tailwind/build-pipeline.md](/knowledge/wp-acf-blocks/tailwind/build-pipeline.md)`, and `[@/knowledge/wp-acf-blocks/typescript/tsup-setup.md](/knowledge/wp-acf-blocks/typescript/tsup-setup.md)`, then:
 
 ## 1. Collect project info
 
@@ -47,8 +47,8 @@ themes/{slug}/
 `QUICKSTART.md` content:
 ```markdown
 # Quick Start
-- `/wp-blocks-dev:create-block <name>` — scaffold a new block
-- `/wp-blocks-dev:audit-blocks` — audit all blocks against conventions
+- `/wp-acf-blocks:create-block <name>` — scaffold a new block
+- `/wp-acf-blocks:audit-blocks` — audit all blocks against conventions
 ```
 
 ## 5. If Tailwind selected
@@ -56,7 +56,7 @@ themes/{slug}/
 Follow `knowledge/tailwind/build-pipeline.md`. Copy the template:
 ```bash
 mkdir -p themes/{slug}/scripts themes/{slug}/assets/css
-cp $(claude plugin path wp-blocks-dev)/templates/tailwind.js themes/{slug}/scripts/tailwind.js
+cp $(claude plugin path wp-acf-blocks)/templates/tailwind.js themes/{slug}/scripts/tailwind.js
 ```
 
 Remind user to copy `tailwind-theme-loader.php` into `mu-plugins/`.
@@ -70,4 +70,4 @@ Follow `knowledge/typescript/tsup-setup.md`. Create `tsup.config.ts`, `tsconfig.
 Print a summary of what was created and what was skipped. Next steps:
 - Activate the theme in WordPress
 - Run `pnpm install && pnpm build` if Tailwind or TS was selected
-- Use `/wp-blocks-dev:create-block` to add the first block
+- Use `/wp-acf-blocks:create-block` to add the first block

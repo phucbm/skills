@@ -15,6 +15,6 @@
     "./skills/backend/github-as-db",
     "./skills/deploy/cloudflare-pages",
     "./skills/deploy/publish-npm",
-    "./skills/wordpress/wp-blocks-dev"
+    "./skills/wordpress/wp-acf-blocks"
   ]
 }

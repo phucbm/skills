@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * wp-blocks-dev — Tailwind CSS build wrapper
+ * wp-acf-blocks — Tailwind CSS build wrapper
  *
  * - Reads TAILWIND_USER from .env.local for per-developer output files
  * - Writes to assets/css/style.generated.css (shared) or

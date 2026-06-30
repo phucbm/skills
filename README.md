@@ -70,7 +70,7 @@ Update when new skills are released:
 
 ### wordpress
 
-- **[wp-blocks-dev](skills/wordpress/wp-blocks-dev/SKILL.md)** - Scaffold, audit and manage ACF Gutenberg blocks with Tailwind CSS.
+- **[wp-acf-blocks](skills/wordpress/wp-acf-blocks/SKILL.md)** - Scaffold, audit and manage ACF Gutenberg blocks with Tailwind CSS.
 
 ---
 
@@ -83,7 +83,7 @@ All plugins available from the `phucbm` marketplace:
 | `claudify` | [phucbm/claudify](https://github.com/phucbm/claudify) | `/plugin install claudify@phucbm` | Bootstrap `.claude/` structure for any existing repo |
 | `skills` | [phucbm/skills](https://github.com/phucbm/skills) | `/plugin install skills@phucbm` | Personal knowledge base (this repo) |
 | `registry-system` | [phucbm/registry-system](https://github.com/phucbm/registry-system) | `/plugin install registry-system@phucbm` | Manage shadcn-compatible component registry - create, validate, and push components |
-| `wp-blocks-dev` | [phucbm/wp-blocks-dev](https://github.com/phucbm/wp-blocks-dev) | `/plugin install wp-blocks-dev@phucbm` | Scaffold, audit and manage custom ACF Gutenberg blocks with Tailwind CSS |
+| `wp-acf-blocks` | [phucbm/wp-acf-blocks](https://github.com/phucbm/wp-acf-blocks) | `/plugin install wp-acf-blocks@phucbm` | Scaffold, audit and manage custom ACF Gutenberg blocks with Tailwind CSS |
 
 ---
 

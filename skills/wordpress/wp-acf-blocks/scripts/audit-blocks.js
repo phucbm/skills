@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * wp-blocks-dev — audit-blocks
+ * wp-acf-blocks — audit-blocks
  *
  * Level 1 audit: structural checks only, no AI, no tokens.
  * Checks every block in blocks.json against required file conventions.
@@ -179,7 +179,7 @@ function findUnregisteredBlocks(){
 // Run audit
 // ---------------------------------------------------------------------------
 
-console.log(`\nwp-blocks-dev audit — ${themeRoot}\n`);
+console.log(`\nwp-acf-blocks audit — ${themeRoot}\n`);
 console.log(`Registered blocks: ${registeredBlocks.length}\n`);
 
 const results         = registeredBlocks.map(auditBlock);
