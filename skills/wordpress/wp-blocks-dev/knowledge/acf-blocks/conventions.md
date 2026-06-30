@@ -18,12 +18,12 @@ Minimum required fields:
 
 ```json
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "$schema": "https://raw.githubusercontent.com/AdvancedCustomFields/schemas/refs/heads/main/json/block.json",
   "apiVersion": 3,
-  "name": "acf/{block-name}",
+  "name": "{namespace}/{block-name}",
   "title": "Human Readable Title",
   "description": "One sentence describing what this block does.",
-  "category": "theme",
+  "category": "{namespace}",
   "icon": "block-default",
   "acf": {
     "mode": "preview",
@@ -35,10 +35,17 @@ Minimum required fields:
       "default": "preview.png"
     }
   },
-  "supports": { "anchor": true }
+  "supports": {
+    "multiple": false,
+    "align": false,
+    "alignWide": false,
+    "anchor": false,
+    "html": false
+  }
 }
 ```
 
+- `{namespace}` matches the theme's registered block category slug (e.g. `mytheme`). Use the same value for both `name` and `category`.
 - `title` and `description` must never be empty or placeholder values
 - If the block has frontend JS: add `"viewScript": ["file:./view.js"]`
 - If the block depends on a registered library: `"viewScript": ["library-handle", "file:./view.js"]`
@@ -70,11 +77,21 @@ add_action('enqueue_block_editor_assets', function(){
 
 ### Wrapper
 
-The outermost element must always use `get_block_wrapper_attributes()`:
+The outermost element must use `theme_get_block_wrapper_attributes()` (see [`@ref/get-block-wrapper-attributes.php`](../../ref/get-block-wrapper-attributes.php) — copy to `helpers/ui/` at theme setup):
 
 ```php
-<div <?php echo get_block_wrapper_attributes(['class' => 'wp-block-{block-name}']); ?>>
+$wrapper_attributes = theme_get_block_wrapper_attributes([
+    'slug'  => '{block-name}',
+    'block' => $block,
+    'class' => '',
+]);
+?>
+<section <?php echo $wrapper_attributes; ?>>
 ```
+
+- Adds `theme-block` and `theme-block--{slug}` classes, `data-theme-block` attribute, anchor support, and editor pointer-events lock automatically.
+- Pass extra Tailwind classes in `class` (e.g. `'class' => 'lg:mb-20 mb-12'`). Leave empty string if none.
+- Use `<section>` for top-level page sections; `<div>` for utility/widget blocks.
 
 ### Early return for admin
 
@@ -113,7 +130,7 @@ Always show a visible placeholder with `pointer-events:none` to prevent accident
 </div>
 ```
 
-If the theme provides a wrapper helper (e.g. `px_get_block_wrapper_attributes()`), check whether it already injects `pointer-events:none` — if so, do **not** add it inline.
+`theme_get_block_wrapper_attributes()` already injects `pointer-events-none` in the editor — do **not** add it inline when using the helper.
 
 ## view.entry.ts
 
@@ -140,7 +157,7 @@ $image_id = get_field('image');           // int|null
 // Convert to <img> tag:
 echo wp_get_attachment_image($image_id, 'large');
 // Or with a theme helper if available:
-// echo px_get_image_tag($image_id, 600);
+// echo theme_get_image_tag($image_id, 600);
 ```
 
 ### Link fields
@@ -179,7 +196,7 @@ $title = $slide['title'] ?? '';
 $count = $data['count']  ?? 0;
 ```
 
-If the theme provides `px_array_key_exists($key, $array, $default)`, use it — it handles null, false, and empty-string as the default.
+If the theme provides `theme_array_key_exists($key, $array, $default)`, use it — it handles null, false, and empty-string as the default.
 
 ### Relationship fields
 
