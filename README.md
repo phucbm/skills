@@ -83,7 +83,6 @@ All plugins available from the `phucbm` marketplace:
 | `claudify` | [phucbm/claudify](https://github.com/phucbm/claudify) | `/plugin install claudify@phucbm` | Bootstrap `.claude/` structure for any existing repo |
 | `skills` | [phucbm/skills](https://github.com/phucbm/skills) | `/plugin install skills@phucbm` | Personal knowledge base (this repo) |
 | `registry-system` | [phucbm/registry-system](https://github.com/phucbm/registry-system) | `/plugin install registry-system@phucbm` | Manage shadcn-compatible component registry - create, validate, and push components |
-| `wp-acf-blocks` | [phucbm/wp-acf-blocks](https://github.com/phucbm/wp-acf-blocks) | `/plugin install wp-acf-blocks@phucbm` | Scaffold, audit and manage custom ACF Gutenberg blocks with Tailwind CSS |
 
 ---
 
