@@ -18,12 +18,12 @@ Minimum required fields:
 
 ```json
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "$schema": "https://raw.githubusercontent.com/AdvancedCustomFields/schemas/refs/heads/main/json/block.json",
   "apiVersion": 3,
-  "name": "acf/{block-name}",
+  "name": "{namespace}/{block-name}",
   "title": "Human Readable Title",
   "description": "One sentence describing what this block does.",
-  "category": "theme",
+  "category": "{namespace}",
   "icon": "block-default",
   "acf": {
     "mode": "preview",
@@ -35,10 +35,17 @@ Minimum required fields:
       "default": "preview.png"
     }
   },
-  "supports": { "anchor": true }
+  "supports": {
+    "multiple": false,
+    "align": false,
+    "alignWide": false,
+    "anchor": false,
+    "html": false
+  }
 }
 ```
 
+- `{namespace}` matches the theme's registered block category slug (e.g. `dmd` for DMD project). Use the same value for both `name` and `category`.
 - `title` and `description` must never be empty or placeholder values
 - If the block has frontend JS: add `"viewScript": ["file:./view.js"]`
 - If the block depends on a registered library: `"viewScript": ["library-handle", "file:./view.js"]`
@@ -70,11 +77,21 @@ add_action('enqueue_block_editor_assets', function(){
 
 ### Wrapper
 
-The outermost element must always use `get_block_wrapper_attributes()`:
+The outermost element must always use the theme helper `px_get_block_wrapper_attributes()`:
 
 ```php
-<div <?php echo get_block_wrapper_attributes(['class' => 'wp-block-{block-name}']); ?>>
+$wrapper_attributes = px_get_block_wrapper_attributes([
+    'slug'  => '{block-name}',
+    'block' => $block,
+    'class' => '',
+]);
+?>
+<section <?php echo $wrapper_attributes; ?>>
 ```
+
+- Use `<section>` for top-level page sections; `<div>` for utility/widget blocks.
+- Pass extra Tailwind classes in `class` (e.g. `'class' => 'lg:mb-20 mb-12'`). Leave empty if none.
+- Do NOT use generic WP `get_block_wrapper_attributes()` — the theme helper injects the block slug as a CSS class and handles other DMD-specific attributes.
 
 ### Early return for admin
 

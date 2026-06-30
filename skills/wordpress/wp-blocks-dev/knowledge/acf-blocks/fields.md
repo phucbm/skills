@@ -14,20 +14,28 @@ get_field('key', $post_id) // 2 params = external field = no fields.json needed
 ## Format
 
 ```json
-[
-  {
+{
     "key": "group_<unique_hash>",
     "title": "Block Title",
     "fields": [],
-    "location": [[{ "param": "block", "operator": "==", "value": "acf/{block-name}" }]],
+    "location": [[{ "param": "block", "operator": "==", "value": "{namespace}/{block-name}" }]],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
     "active": true,
+    "description": "",
     "show_in_rest": 0,
+    "display_title": "",
     "modified": 1700000000
-  }
-]
+}
 ```
 
-`key` must be a unique hash (e.g. `group_6a3f2b1c4d`). Never use a human-readable slug — ACF uses it as the primary identifier and requires global uniqueness.
+- Format is a **plain JSON object**, NOT an array. ACF per-block exports are single objects.
+- `{namespace}` must match the `name` in `block.json` (e.g. `dmd/info-accordion` → location value is `dmd/info-accordion`).
+- `key` must be a unique hash (e.g. `group_6a3f2b1c4d`). Never use a human-readable slug — ACF uses it as the primary identifier and requires global uniqueness.
 
 ## Common field type snippets
 
@@ -62,17 +70,25 @@ Use these as starting points when writing fields directly in `fields.json`.
 **Repeater**
 ```json
 {
-  "key": "field_<hash>",
+  "key": "field_abc12345",
   "label": "Slides",
   "name": "slides",
   "type": "repeater",
   "layout": "block",
+  "pagination": 0,
+  "min": 0,
+  "max": 0,
+  "collapsed": "",
   "button_label": "Add Row",
+  "rows_per_page": 20,
   "sub_fields": [
-    { "key": "field_<hash>", "label": "Title", "name": "title", "type": "textarea", "parent_repeater": "field_<parent_hash>" },
-    { "key": "field_<hash>", "label": "Image", "name": "image", "type": "image", "return_format": "id", "parent_repeater": "field_<parent_hash>" }
+    { "key": "field_def67890", "label": "Title", "name": "title", "type": "textarea", "parent_repeater": "field_abc12345" },
+    { "key": "field_ghi11223", "label": "Image", "name": "image", "type": "image", "return_format": "id", "preview_size": "medium", "parent_repeater": "field_abc12345" }
   ]
 }
+```
+
+`parent_repeater` in each sub-field must equal the repeater's own `key` exactly.
 ```
 
 **Relationship** — use `return_format: "object"` to get WP_Post objects
