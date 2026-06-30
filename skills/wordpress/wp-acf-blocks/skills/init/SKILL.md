@@ -47,7 +47,7 @@ themes/{slug}/
 `QUICKSTART.md` content:
 ```markdown
 # Quick Start
-- `/wp-acf-blocks:create-block <name>` — scaffold a new block
+- `/wp-acf-blocks:add-block` — scaffold a new block (interactive, from GitHub issue, or markdown brief)
 - `/wp-acf-blocks:audit-blocks` — audit all blocks against conventions
 ```
 
@@ -70,4 +70,4 @@ Follow `knowledge/typescript/tsup-setup.md`. Create `tsup.config.ts`, `tsconfig.
 Print a summary of what was created and what was skipped. Next steps:
 - Activate the theme in WordPress
 - Run `pnpm install && pnpm build` if Tailwind or TS was selected
-- Use `/wp-acf-blocks:create-block` to add the first block
+- Use `/wp-acf-blocks:add-block` to add the first block

@@ -17,7 +17,7 @@ allowed-tools:
 Read [`@/knowledge/wp-acf-blocks/overview.md`](/knowledge/wp-acf-blocks/overview.md), then determine which sub-skill to invoke based on the user's request:
 
 - `/wp-acf-blocks:init` — initialize a new theme with the full directory structure
-- `/wp-acf-blocks:create-block` — scaffold a new block via `create-block.js`
+- `/wp-acf-blocks:add-block` — scaffold one or more blocks from GitHub issues, markdown brief, or interactive prompts
 - `/wp-acf-blocks:audit-blocks` — fast structural audit (files, wrappers, timestamps)
 - `/wp-acf-blocks:audit-blocks-deep` — structural audit + AI content quality review
 

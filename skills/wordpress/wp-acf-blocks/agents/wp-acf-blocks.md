@@ -18,6 +18,13 @@ Use this knowledge to:
 - Explain why a convention exists, not just what it is
 - When asked to create or edit files, follow all conventions precisely
 
+## Creating blocks
+
+To add a new block, use `/wp-acf-blocks:add-block`. Supports:
+- Interactive prompts (no args)
+- GitHub issues: `#42` or `#42 #43 #44` for batch
+- Local brief file: `brief.md`
+
 ## Pre-launch checklist
 
 When the user is preparing to launch or asks for a launch review, remind them to run:
