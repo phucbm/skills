@@ -1,14 +1,15 @@
 #!/usr/bin/env node
 
 /**
- * wp-acf-blocks — audit-blocks
+ * wp-acf-blocks — revise-block
  *
  * Level 1 audit: structural checks only, no AI, no tokens.
  * Checks every block in blocks.json against required file conventions.
  *
  * Usage:
- *   node audit-blocks.js                 (run from theme root)
- *   node path/to/audit-blocks.js         (run from anywhere)
+ *   node revise-block.js                        (all blocks)
+ *   node revise-block.js hero-banner            (single block)
+ *   node revise-block.js hero-banner faq-list   (multiple blocks)
  */
 
 import fs   from 'node:fs';
@@ -40,25 +41,46 @@ if(!themeRoot){
 
 const blocksJsonPath = path.join(themeRoot, 'blocks.json');
 const blocksJsonRaw = JSON.parse(fs.readFileSync(blocksJsonPath, 'utf8'));
-const registeredBlocks = Array.isArray(blocksJsonRaw) ? blocksJsonRaw : (blocksJsonRaw.blocks ?? blocksJsonRaw);
+const allRegisteredBlocks = Array.isArray(blocksJsonRaw) ? blocksJsonRaw : (blocksJsonRaw.blocks ?? blocksJsonRaw);
 const blocksDir = path.join(themeRoot, 'blocks');
+
+// ---------------------------------------------------------------------------
+// Filter by CLI args (strip namespace prefix if present, e.g. "mytheme/hero" -> "hero")
+// ---------------------------------------------------------------------------
+
+const argBlocks = process.argv.slice(2).map(a => a.includes('/') ? a.split('/').pop() : a);
+const registeredBlocks = argBlocks.length > 0
+    ? allRegisteredBlocks.filter(b => {
+        const slug = b.includes('/') ? b.split('/').pop() : b;
+        return argBlocks.includes(slug);
+      })
+    : allRegisteredBlocks;
+
+if(argBlocks.length > 0){
+    const notFound = argBlocks.filter(a => !registeredBlocks.some(b => {
+        const slug = b.includes('/') ? b.split('/').pop() : b;
+        return slug === a;
+    }));
+    if(notFound.length > 0){
+        console.error(`Error: block(s) not found in blocks.json: ${notFound.join(', ')}`);
+        process.exit(1);
+    }
+}
 
 // ---------------------------------------------------------------------------
 // Rules
 // ---------------------------------------------------------------------------
 
-const REQUIRED_FILES  = ['block.json', 'render.php']; // fields.json required only if render.php uses get_field()
-const IMPORTANT_FILES = ['preview.png']; // not hard required but strongly recommended
-
 function auditBlock(blockName){
     const issues   = [];
     const warnings = [];
-    const blockDir = path.join(blocksDir, blockName);
+    const slug     = blockName.includes('/') ? blockName.split('/').pop() : blockName;
+    const blockDir = path.join(blocksDir, slug);
 
     // Rule: block folder must exist
     if(!fs.existsSync(blockDir)){
         issues.push('folder missing — registered in blocks.json but directory not found');
-        return { blockName, issues, warnings };
+        return { blockName: slug, issues, warnings };
     }
 
     // Rule: block.json and render.php are always required
@@ -69,9 +91,9 @@ function auditBlock(blockName){
     }
 
     // Rule: fields.json required if any .php file in the block calls get_field() with 1 param
-    // get_field('key')           = 1 param = block-owned field = needs fields.json
+    // get_field('key')            = 1 param = block-owned field = needs fields.json
     // get_field('key', $anything) = 2 params = external field = no fields.json needed
-    const renderPhpPath = path.join(blockDir, 'render.php');
+    const renderPhpPath  = path.join(blockDir, 'render.php');
     const fieldsJsonPath = path.join(blockDir, 'fields.json');
     const phpFiles = fs.readdirSync(blockDir).filter(f => f.endsWith('.php'));
     const usesAcfFields = phpFiles.some(f =>
@@ -82,13 +104,11 @@ function auditBlock(blockName){
     }
 
     // Rule: preview.png (strongly recommended)
-    for(const file of IMPORTANT_FILES){
-        if(!fs.existsSync(path.join(blockDir, file))){
-            warnings.push(`missing recommended file: ${file}`);
-        }
+    if(!fs.existsSync(path.join(blockDir, 'preview.png'))){
+        warnings.push('missing recommended file: preview.png');
     }
 
-    // Rule: block.json — valid JSON, title and description not empty/placeholder
+    // Rule: block.json — valid JSON, title/description not empty/placeholder, previewImage attribute present
     const blockJsonPath = path.join(blockDir, 'block.json');
     if(fs.existsSync(blockJsonPath)){
         try{
@@ -100,6 +120,9 @@ function auditBlock(blockName){
             }
             if(!blockJson.description || placeholders.includes(blockJson.description.toLowerCase())){
                 warnings.push('block.json: description is empty or a placeholder');
+            }
+            if(!blockJson.attributes?.previewImage){
+                warnings.push('block.json: missing attributes.previewImage — inserter thumbnail will not display');
             }
         }catch{
             issues.push('block.json: invalid JSON');
@@ -119,11 +142,11 @@ function auditBlock(blockName){
         }
     }
 
-    // Rule: render.php must use get_block_wrapper_attributes()
+    // Rule: render.php must use theme_get_block_wrapper_attributes() (theme helper, not WP native)
     if(fs.existsSync(renderPhpPath)){
         const renderContent = fs.readFileSync(renderPhpPath, 'utf8');
-        if(!renderContent.includes('get_block_wrapper_attributes')){
-            warnings.push('render.php: missing get_block_wrapper_attributes() on wrapper element');
+        if(!renderContent.includes('theme_get_block_wrapper_attributes')){
+            warnings.push('render.php: missing theme_get_block_wrapper_attributes() — use the theme helper, not the WP native function');
         }
 
         // Rule: if render-admin.php exists, render.php must have early return
@@ -133,9 +156,10 @@ function auditBlock(blockName){
         }
     }
 
-    // Rule: view.js exists but block.json has no viewScript referencing it
-    const viewJsPath = path.join(blockDir, 'view.js');
-    if(fs.existsSync(viewJsPath) && fs.existsSync(blockJsonPath)){
+    // Rule: view.entry.ts or view.js exists but block.json has no viewScript referencing compiled view.js
+    const viewJsPath    = path.join(blockDir, 'view.js');
+    const viewEntryPath = path.join(blockDir, 'view.entry.ts');
+    if((fs.existsSync(viewJsPath) || fs.existsSync(viewEntryPath)) && fs.existsSync(blockJsonPath)){
         try{
             const blockJson = JSON.parse(fs.readFileSync(blockJsonPath, 'utf8'));
             const viewScript = blockJson.viewScript;
@@ -144,34 +168,36 @@ function auditBlock(blockName){
                 (Array.isArray(viewScript) && viewScript.some(s => typeof s === 'string' && s.includes('view.js')))
             );
             if(!hasViewScript){
-                warnings.push('view.js exists but block.json has no viewScript pointing to it — file may be unused');
+                warnings.push('view.entry.ts / view.js exists but block.json has no viewScript pointing to view.js — file may be unused');
             }
         }catch{ /* block.json already flagged as invalid above */ }
     }
 
     // Rule: unknown files in block folder
-    const KNOWN_FILES = new Set(['block.json', 'fields.json', 'preview.png', 'render.php', 'render-admin.php', 'view.js', 'index.ts']);
+    const KNOWN_FILES      = new Set(['block.json', 'fields.json', 'preview.png', 'render.php', 'render-admin.php', 'view.entry.ts', 'view.js']);
     const KNOWN_EXTENSIONS = new Set(['.php', '.ts', '.js', '.css', '.scss']);
-    const entries = fs.readdirSync(blockDir);
-    for(const entry of entries){
+    for(const entry of fs.readdirSync(blockDir)){
         const stat = fs.statSync(path.join(blockDir, entry));
         if(!stat.isDirectory() && !KNOWN_FILES.has(entry) && !KNOWN_EXTENSIONS.has(path.extname(entry))){
             warnings.push(`unknown file: ${entry} — check if needed or remove`);
         }
     }
 
-    return { blockName, issues, warnings };
+    return { blockName: slug, issues, warnings };
 }
 
 // ---------------------------------------------------------------------------
-// Check for unregistered block folders (folders that exist but not in blocks.json)
+// Check for unregistered block folders (only when auditing all blocks)
 // ---------------------------------------------------------------------------
 
 function findUnregisteredBlocks(){
-    if(!fs.existsSync(blocksDir)) return [];
+    if(!fs.existsSync(blocksDir) || argBlocks.length > 0) return [];
     return fs.readdirSync(blocksDir).filter(name => {
         const stat = fs.statSync(path.join(blocksDir, name));
-        return stat.isDirectory() && !registeredBlocks.includes(name);
+        return stat.isDirectory() && !allRegisteredBlocks.some(b => {
+            const slug = b.includes('/') ? b.split('/').pop() : b;
+            return slug === name;
+        });
     });
 }
 
@@ -179,8 +205,9 @@ function findUnregisteredBlocks(){
 // Run audit
 // ---------------------------------------------------------------------------
 
-console.log(`\nwp-acf-blocks audit — ${themeRoot}\n`);
-console.log(`Registered blocks: ${registeredBlocks.length}\n`);
+const scope = argBlocks.length > 0 ? `blocks: ${argBlocks.join(', ')}` : 'all blocks';
+console.log(`\nwp-acf-blocks revise — ${themeRoot} (${scope})\n`);
+console.log(`Checking: ${registeredBlocks.length} block(s)\n`);
 
 const results         = registeredBlocks.map(auditBlock);
 const unregistered    = findUnregisteredBlocks();
