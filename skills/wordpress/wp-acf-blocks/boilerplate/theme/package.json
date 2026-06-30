@@ -1,0 +1,22 @@
+{
+  "name": "{TEXT_DOMAIN}",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Custom ACF Gutenberg blocks with TypeScript and Tailwind",
+  "scripts": {
+    "ts-build": "NODE_ENV=production tsup",
+    "ts-watch": "NODE_ENV=development tsup --watch",
+    "tw-watch": "node ./scripts/tailwind.js --watch",
+    "tw-build": "node ./scripts/tailwind.js",
+    "dev": "pnpm ts-watch & pnpm tw-watch",
+    "build": "pnpm ts-build && pnpm tw-build"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.0",
+    "glob": "13.0.0",
+    "tailwindcss": "^4.1.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  },
+  "packageManager": "pnpm@10.2.0"
+}
