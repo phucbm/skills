@@ -77,14 +77,21 @@ add_action('enqueue_block_editor_assets', function(){
 
 ### Wrapper
 
-The outermost element must always use `get_block_wrapper_attributes()`:
+The outermost element must use `px_get_block_wrapper_attributes()` (see [`@ref/get-block-wrapper-attributes.php`](../../ref/get-block-wrapper-attributes.php) — copy to `helpers/ui/` at theme setup):
 
 ```php
-<div <?php echo get_block_wrapper_attributes(['class' => 'wp-block-{block-name}']); ?>>
+$wrapper_attributes = px_get_block_wrapper_attributes([
+    'slug'  => '{block-name}',
+    'block' => $block,
+    'class' => '',
+]);
+?>
+<section <?php echo $wrapper_attributes; ?>>
 ```
 
+- Adds `px-block` and `px-block--{slug}` classes, `data-px-block` attribute, anchor support, and editor pointer-events lock automatically.
+- Pass extra Tailwind classes in `class` (e.g. `'class' => 'lg:mb-20 mb-12'`). Leave empty string if none.
 - Use `<section>` for top-level page sections; `<div>` for utility/widget blocks.
-- If the theme provides a custom wrapper helper (e.g. `px_get_block_wrapper_attributes()`), use it instead — it typically injects the block slug as a CSS class and adds theme-specific attributes. Check with the project before scaffolding.
 
 ### Early return for admin
 
@@ -123,7 +130,7 @@ Always show a visible placeholder with `pointer-events:none` to prevent accident
 </div>
 ```
 
-If the theme provides a wrapper helper (e.g. `px_get_block_wrapper_attributes()`), check whether it already injects `pointer-events:none` — if so, do **not** add it inline.
+`px_get_block_wrapper_attributes()` already injects `pointer-events-none` in the editor — do **not** add it inline when using the helper.
 
 ## view.entry.ts
 
