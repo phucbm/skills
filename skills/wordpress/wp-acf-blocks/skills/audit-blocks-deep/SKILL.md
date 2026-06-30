@@ -3,12 +3,12 @@ name: audit-blocks-deep
 description: Deep AI audit of all blocks — runs structural checks first, then uses AI to review content quality, descriptions, grammar, admin render justification, wrapper usage, and empty-state messages.
 ---
 
-Read `[@/knowledge/wp-blocks-dev/acf-blocks/conventions.md](/knowledge/wp-blocks-dev/acf-blocks/conventions.md) and [@/knowledge/wp-blocks-dev/acf-blocks/fields.md](/knowledge/wp-blocks-dev/acf-blocks/fields.md)`, then:
+Read `[@/knowledge/wp-acf-blocks/acf-blocks/conventions.md](/knowledge/wp-acf-blocks/acf-blocks/conventions.md) and [@/knowledge/wp-acf-blocks/acf-blocks/fields.md](/knowledge/wp-acf-blocks/acf-blocks/fields.md)`, then:
 
 ## Step 1 — Structural check
 
 ```bash
-node $(claude plugin path wp-blocks-dev)/scripts/audit-blocks.js
+node $(claude plugin path wp-acf-blocks)/scripts/audit-blocks.js
 ```
 
 If there are `✗` issues, tell the user to fix them before proceeding. Warnings are fine to continue.

@@ -118,8 +118,8 @@ Frontend dev fills in the decorative layer.
 
 ## What the skill needs to support
 
-- `/wp-blocks-dev:from-breakdown` — scaffold one block from a breakdown file or GitHub issue
-- `/wp-blocks-dev:batch-create` — read `blocks-queue.json`, show dry-run report, confirm, create all
+- `/wp-acf-blocks:from-breakdown` — scaffold one block from a breakdown file or GitHub issue
+- `/wp-acf-blocks:batch-create` — read `blocks-queue.json`, show dry-run report, confirm, create all
 
 Both sub-skills must:
 1. Generate unique ACF field keys (format: `field_<8-char hex>`)

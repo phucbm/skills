@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * wp-blocks-dev — create-block
+ * wp-acf-blocks — create-block
  *
  * Scaffolds all required files for a new ACF Gutenberg block and registers
  * it in blocks.json. Run from anywhere inside the theme directory.
