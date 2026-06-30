@@ -102,7 +102,7 @@ Claude generates **structural HTML only**:
 - Semantic tags: `<section>`, `<div>`, `<h2>`, `<ul>`, `<button>`, etc.
 - Grid/column structure via Tailwind layout utilities: `grid`, `flex`, `col-span-*`
 - ACF field output with correct PHP patterns (see `conventions.md`)
-- `px_get_block_wrapper_attributes()` wrapper (see `ref/get-block-wrapper-attributes.php`)
+- `theme_get_block_wrapper_attributes()` wrapper (see `ref/get-block-wrapper-attributes.php`)
 - Loops for repeaters
 - Conditional rendering for optional fields
 - `data-*` attributes for JS hooks if needed
@@ -127,4 +127,4 @@ Both sub-skills must:
 3. Set correct `location` binding to the block slug
 4. Set `modified` to current Unix timestamp
 5. Use configurable namespace in `block.json` name (read from project config or prompt user)
-6. Use `px_get_block_wrapper_attributes()` (from `ref/get-block-wrapper-attributes.php`)
+6. Use `theme_get_block_wrapper_attributes()` (from `ref/get-block-wrapper-attributes.php`)

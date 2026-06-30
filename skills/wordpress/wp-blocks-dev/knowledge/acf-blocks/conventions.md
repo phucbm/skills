@@ -77,10 +77,10 @@ add_action('enqueue_block_editor_assets', function(){
 
 ### Wrapper
 
-The outermost element must use `px_get_block_wrapper_attributes()` (see [`@ref/get-block-wrapper-attributes.php`](../../ref/get-block-wrapper-attributes.php) — copy to `helpers/ui/` at theme setup):
+The outermost element must use `theme_get_block_wrapper_attributes()` (see [`@ref/get-block-wrapper-attributes.php`](../../ref/get-block-wrapper-attributes.php) — copy to `helpers/ui/` at theme setup):
 
 ```php
-$wrapper_attributes = px_get_block_wrapper_attributes([
+$wrapper_attributes = theme_get_block_wrapper_attributes([
     'slug'  => '{block-name}',
     'block' => $block,
     'class' => '',
@@ -89,7 +89,7 @@ $wrapper_attributes = px_get_block_wrapper_attributes([
 <section <?php echo $wrapper_attributes; ?>>
 ```
 
-- Adds `px-block` and `px-block--{slug}` classes, `data-px-block` attribute, anchor support, and editor pointer-events lock automatically.
+- Adds `theme-block` and `theme-block--{slug}` classes, `data-theme-block` attribute, anchor support, and editor pointer-events lock automatically.
 - Pass extra Tailwind classes in `class` (e.g. `'class' => 'lg:mb-20 mb-12'`). Leave empty string if none.
 - Use `<section>` for top-level page sections; `<div>` for utility/widget blocks.
 
@@ -130,7 +130,7 @@ Always show a visible placeholder with `pointer-events:none` to prevent accident
 </div>
 ```
 
-`px_get_block_wrapper_attributes()` already injects `pointer-events-none` in the editor — do **not** add it inline when using the helper.
+`theme_get_block_wrapper_attributes()` already injects `pointer-events-none` in the editor — do **not** add it inline when using the helper.
 
 ## view.entry.ts
 
@@ -157,7 +157,7 @@ $image_id = get_field('image');           // int|null
 // Convert to <img> tag:
 echo wp_get_attachment_image($image_id, 'large');
 // Or with a theme helper if available:
-// echo px_get_image_tag($image_id, 600);
+// echo theme_get_image_tag($image_id, 600);
 ```
 
 ### Link fields
@@ -196,7 +196,7 @@ $title = $slide['title'] ?? '';
 $count = $data['count']  ?? 0;
 ```
 
-If the theme provides `px_array_key_exists($key, $array, $default)`, use it — it handles null, false, and empty-string as the default.
+If the theme provides `theme_array_key_exists($key, $array, $default)`, use it — it handles null, false, and empty-string as the default.
 
 ### Relationship fields
 
