@@ -65,8 +65,10 @@ themes/{slug}/
 │   │   └── index.entry.ts
 │   └── css/
 │       └── index.css
+├── acf-json/               empty dir tracked via .gitkeep; populated by ACF when saving field groups
 ├── tsup.config.ts
 ├── tsconfig.json
+├── .gitignore
 └── package.json
 ```
 
@@ -88,14 +90,7 @@ cp "$(claude plugin path wp-acf-blocks)/boilerplate/mu-plugins/tailwind-theme-lo
 
 ## Step 6 — If Tailwind selected
 
-Add `.gitignore` entries:
-
-```
-.env.local
-assets/css/style.*.generated.css
-```
-
-For per-developer CSS, instruct each developer to create `.env.local` in the theme root:
+The boilerplate `.gitignore` already excludes `.env.local` and generated CSS files. For per-developer CSS, instruct each developer to create `.env.local` in the theme root:
 
 ```
 TAILWIND_USER=theirlogin
