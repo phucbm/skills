@@ -7,7 +7,7 @@ Scaffold, audit, and manage custom ACF Gutenberg blocks for WordPress with optio
 | Skill | Trigger | What it does |
 |-------|---------|--------------|
 | `init` | `/wp-acf-blocks:init` | Scaffold new theme — collects name/slug/author, optional Tailwind/TS, creates directory structure |
-| `create-block` | `/wp-acf-blocks:create-block` | Scaffold a new block via `scripts/create-block.js` — prompts for name, title, description |
+| `add-block` | `/wp-acf-blocks:add-block` | Scaffold one or more blocks from GitHub issues (`#42 #43`), a markdown brief, or interactive prompts |
 | `audit-blocks` | `/wp-acf-blocks:audit-blocks` | Fast structural audit via `scripts/audit-blocks.js` — checks files, wrappers, timestamps |
 | `audit-blocks-deep` | `/wp-acf-blocks:audit-blocks-deep` | Structural audit + AI content quality review (titles, fields, wrapper, empty states) |
 

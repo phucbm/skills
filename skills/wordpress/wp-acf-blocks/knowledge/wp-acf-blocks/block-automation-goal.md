@@ -4,31 +4,59 @@
 
 Fully automate steps 1 and 2 of the block creation workflow:
 
-1. **Breakdown** — leader reads brief, produces a breakdown (fields needed, layout description)
-2. **Scaffold** — dev creates block files: `block.json`, `fields.json`, `render.php`, `view.js`
-3. **CSS** — frontend dev finishes styling (manual, high-standard, NOT automated)
+1. **Breakdown** - leader reads brief, produces a breakdown (fields needed, layout description)
+2. **Scaffold** - dev creates block files: `block.json`, `fields.json`, `render.php`, `view.js`
+3. **CSS** - frontend dev finishes styling (manual, high-standard, NOT automated)
 
 Current cost of steps 1-2: 2-3 hours, up to 3 people. Target: under 5 minutes, 0 people after input is ready.
 
-## Input: the breakdown
+## The skill: `add-block`
 
-A breakdown describes a block's purpose, ACF fields, and rough layout. It can come from:
+One sub-skill handles all creation paths:
 
-- A GitHub issue (identified by issue number)
-- A local `.md` file
-- A JSON config entry (see below)
+```
+/wp-acf-blocks:add-block              # interactive - Claude prompts for all info
+/wp-acf-blocks:add-block #42          # single GitHub issue
+/wp-acf-blocks:add-block #42 #43 #44  # batch - multiple issues
+/wp-acf-blocks:add-block brief.md     # local markdown breakdown file
+```
 
-Breakdown format (markdown, written by lead):
+No `blocks-queue.json`. GitHub issues are the stable source - pass issue numbers directly.
+
+## Input formats
+
+### GitHub issue (primary)
+
+Fetch via `gh issue view <n> --json title,body`. Issue body follows the breakdown format below.
+
+### Local markdown file
+
+Read the file directly. Same breakdown format.
+
+### Interactive
+
+Claude asks:
+- Block slug (kebab-case)
+- Block title (human-readable)
+- Block description (one sentence)
+- Fields (name, type, options per field)
+- Layout description (for render.php generation)
+- Needs frontend JS?
+
+## Breakdown format
+
+Markdown written by lead. Claude parses this to extract all scaffolding info:
+
 ```md
 ## Block: info-accordion
 
-**Slug:** `info-accordion`  
-**Title:** Info Accordion  
+**Slug:** `info-accordion`
+**Title:** Info Accordion
 **Description:** Expandable accordion with image, numbered title, and text per item.
 
 ### Fields
 - `heading` — textarea — main section heading
-- `according` — repeater
+- `items` — repeater
   - `image` — image (return_format: id)
   - `title` — textarea
   - `text` — textarea
@@ -40,61 +68,53 @@ Breakdown format (markdown, written by lead):
 - Needs JS for accordion expand/collapse and image switching
 ```
 
-## Batch config: `blocks-queue.json`
+## Namespace detection
 
-Place at theme root or project root. Lists blocks to create in one run.
+Claude reads `style.css` at theme root and extracts `Text Domain`:
 
-```json
-[
-  {
-    "source": "local",
-    "breakdown": "breakdowns/info-accordion.md"
-  },
-  {
-    "source": "github",
-    "issue": 42
-  },
-  {
-    "source": "inline",
-    "slug": "hero-banner",
-    "title": "Hero Banner",
-    "description": "Full-width hero with heading, subtext, and CTA.",
-    "fields": [
-      { "name": "heading", "type": "text" },
-      { "name": "subtext", "type": "textarea" },
-      { "name": "cta_link", "type": "link", "return_format": "array" }
-    ],
-    "layout": "Single column, container, heading + subtext stacked, CTA button below",
-    "js": false
-  }
-]
+```css
+/*
+Theme Name: DMD
+Text Domain: dmd
+*/
 ```
 
-## Automation flow
+`Text Domain: dmd` - namespace is `dmd`. Used in `block.json` name (`dmd/info-accordion`) and `fields.json` location binding.
+
+If multiple themes found, Claude asks once and remembers for the session.
+
+## Process flow
 
 ```
-[blocks-queue.json or single breakdown]
+/wp-acf-blocks:add-block #42 #43
         ↓
-  Claude reads each entry
-  - parses fields, layout, slug, title
-  - for GitHub: fetches issue via gh CLI
+Read style.css - extract namespace
         ↓
-  Dry-run report (per block):
-  - files to create
-  - fields summary
-  - layout intent
-  - flags: needs JS? needs admin preview?
+gh issue view 42 --json title,body
+gh issue view 43 --json title,body
         ↓
-  User confirms (yes/edit/skip per block)
+Claude parses each: slug, title, description, fields, layout, JS flag
         ↓
-  Claude creates all confirmed blocks:
-  - block.json
-  - fields.json (with generated unique keys)
-  - render.php (structural HTML only: rows, columns, loops — no decorative CSS)
-  - view.js stub (if JS needed)
+Dry-run report:
+  #42 info-accordion — 4 fields — needs JS
+  #43 hero-banner — 3 fields — no JS
         ↓
-  Creation report: what was created, what to do next (add CSS, run ts-build)
+User: confirm all / skip #43 / edit #42
+        ↓
+Create all confirmed blocks
+        ↓
+Summary: files created, what to do next
 ```
+
+## Files generated per block
+
+| File | Always? | Notes |
+|------|---------|-------|
+| `block.json` | yes | namespace from `Text Domain` in `style.css` |
+| `fields.json` | yes | unique keys generated, `modified` set to current Unix timestamp |
+| `render.php` | yes | structural HTML from layout description |
+| `view.js` stub | only if JS flagged | empty module with comment |
+| `blocks.json` entry | yes | slug appended to theme `blocks.json` |
 
 ## render.php scope (important)
 
@@ -116,15 +136,11 @@ Claude does NOT add:
 
 Frontend dev fills in the decorative layer.
 
-## What the skill needs to support
-
-- `/wp-acf-blocks:from-breakdown` — scaffold one block from a breakdown file or GitHub issue
-- `/wp-acf-blocks:batch-create` — read `blocks-queue.json`, show dry-run report, confirm, create all
+## Key generation rules
 
 Both sub-skills must:
-1. Generate unique ACF field keys (format: `field_<8-char hex>`)
-2. Generate unique group keys (format: `group_<8-char hex>`)
-3. Set correct `location` binding to the block slug
-4. Set `modified` to current Unix timestamp
-5. Use configurable namespace in `block.json` name (read from project config or prompt user)
-6. Use `theme_get_block_wrapper_attributes()` (from `ref/get-block-wrapper-attributes.php`)
+1. Generate unique ACF field keys: `field_<8-char hex>` (e.g. `field_3a7f2c1b`)
+2. Generate unique group keys: `group_<8-char hex>` (e.g. `group_9d4e8a2f`)
+3. Set `location` binding to `{namespace}/{block-slug}`
+4. Set `modified` to current Unix timestamp (`date +%s`)
+5. Set `parent_repeater` on sub-fields to the repeater's own key
