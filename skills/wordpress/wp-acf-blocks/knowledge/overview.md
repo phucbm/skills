@@ -2,8 +2,6 @@
 
 Scaffold, audit, and manage custom ACF Gutenberg blocks for WordPress with optional Tailwind CSS and TypeScript support.
 
-Source: https://github.com/phucbm/wp-acf-blocks
-
 ## Skills
 
 | Skill | Trigger | What it does |
@@ -15,11 +13,11 @@ Source: https://github.com/phucbm/wp-acf-blocks
 
 ## Knowledge files
 
-- [`acf-blocks/conventions.md`](/knowledge/wp-acf-blocks/acf-blocks/conventions.md) — block file structure, `block.json`, `render.php`, `render-admin.php`, wrapper attributes, field reading patterns, block registration
-- [`acf-blocks/fields.md`](/knowledge/wp-acf-blocks/acf-blocks/fields.md) — `fields.json` format, ACF field types, modified timestamp rule
-- [`wordpress/asset-loading.md`](/knowledge/wp-acf-blocks/wordpress/asset-loading.md) — enqueue patterns, mu-plugins, block registration from `blocks.json`
-- [`tailwind/build-pipeline.md`](/knowledge/wp-acf-blocks/tailwind/build-pipeline.md) — Tailwind v4, per-dev CSS via `TAILWIND_USER`, output files, `.gitignore` rules
-- [`typescript/tsup-setup.md`](/knowledge/wp-acf-blocks/typescript/tsup-setup.md) — `*.entry.ts` convention, tsup config, tsconfig, `viewScript` in `block.json`
+- [`acf-blocks/conventions.md`](/knowledge/acf-blocks/conventions.md) — block file structure, `block.json`, `render.php`, `render-admin.php`, wrapper attributes, field reading patterns, block registration
+- [`acf-blocks/fields.md`](/knowledge/acf-blocks/fields.md) — `fields.json` format, ACF field types, modified timestamp rule
+- [`wordpress/asset-loading.md`](/knowledge/wordpress/asset-loading.md) — enqueue patterns, mu-plugins, block registration from `blocks.json`
+- [`tailwind/build-pipeline.md`](/knowledge/tailwind/build-pipeline.md) — Tailwind v4, per-dev CSS via `TAILWIND_USER`, output files, `.gitignore` rules
+- [`typescript/tsup-setup.md`](/knowledge/typescript/tsup-setup.md) — `*.entry.ts` convention, tsup config, tsconfig, `viewScript` in `block.json`
 
 ## Requirements
 
