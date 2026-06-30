@@ -102,7 +102,7 @@ Claude generates **structural HTML only**:
 - Semantic tags: `<section>`, `<div>`, `<h2>`, `<ul>`, `<button>`, etc.
 - Grid/column structure via Tailwind layout utilities: `grid`, `flex`, `col-span-*`
 - ACF field output with correct PHP patterns (see `conventions.md`)
-- `px_get_block_wrapper_attributes()` wrapper
+- `get_block_wrapper_attributes()` wrapper (or theme helper if project defines one)
 - Loops for repeaters
 - Conditional rendering for optional fields
 - `data-*` attributes for JS hooks if needed
