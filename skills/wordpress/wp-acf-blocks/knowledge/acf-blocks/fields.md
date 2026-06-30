@@ -37,6 +37,15 @@ get_field('key', $post_id) // 2 params = external field = no fields.json needed
 - `{namespace}` must match the `name` in `block.json` (e.g. `mytheme/info-accordion` → location value is `mytheme/info-accordion`).
 - `key` must be a unique hash (e.g. `group_6a3f2b1c4d`). Never use a human-readable slug — ACF uses it as the primary identifier and requires global uniqueness.
 
+## Key generation rules
+
+When generating `fields.json`:
+- Group key format: `group_<8-char hex>` — e.g. `group_9d4e8a2f`
+- Field key format: `field_<8-char hex>` — e.g. `field_3a7f2c1b`
+- Every key must be globally unique — generate independently for each field
+- `modified` must be set to the current Unix timestamp: run `date +%s`
+- Repeater sub-fields must include `"parent_repeater": "<repeater-field-key>"`
+
 ## Common field type snippets
 
 Use these as starting points when writing fields directly in `fields.json`.

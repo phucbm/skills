@@ -221,3 +221,69 @@ Blocks are registered by adding the slug to `blocks.json` at the theme root:
 ```
 
 Keep the list in alphabetical order. The `wp-blocks-loader.php` mu-plugin reads this and calls `register_block_type()` for each entry.
+
+## Namespace
+
+The namespace for `block.json` name and `fields.json` location comes from the theme's `Text Domain` in `style.css`:
+
+```css
+/*
+Theme Name: My Theme
+Text Domain: mytheme
+*/
+```
+
+`Text Domain: mytheme` - namespace is `mytheme`. Used as:
+- `block.json` name: `mytheme/hero-banner`
+- `fields.json` location value: `mytheme/hero-banner`
+- `block.json` category: `mytheme`
+
+Read `style.css` at theme root to detect. If multiple themes exist, ask the user once.
+
+## Block breakdown format
+
+Standard format for describing a block before scaffolding. Used by `/wp-acf-blocks:plan-block` to create GitHub issues and by `/wp-acf-blocks:add-block` to parse them.
+
+```md
+## Block: info-accordion
+
+**Slug:** `info-accordion`
+**Title:** Info Accordion
+**Description:** Expandable accordion with image, numbered title, and text per item.
+
+### Fields
+- `heading` — textarea — main section heading
+- `items` — repeater
+  - `image` — image (return_format: id)
+  - `title` — textarea
+  - `text` — textarea
+
+### Layout
+- Full-height section, container, top heading
+- Two-column grid (5/7): left = stacked images (one visible at a time), right = accordion list
+- Each accordion row: number + title as trigger, text + mobile image as panel
+- Needs JS for accordion expand/collapse and image switching
+```
+
+## render.php generation rules
+
+When generating `render.php` from a layout description, include only structural content:
+
+**Include:**
+- Semantic tags: `<section>`, `<div>`, `<h2>`, `<ul>`, `<button>`, etc.
+- Grid/column structure via Tailwind layout utilities: `grid`, `flex`, `col-span-*`
+- ACF field output with correct PHP patterns
+- `theme_get_block_wrapper_attributes()` wrapper
+- Loops for repeaters using `foreach`
+- Conditional rendering for optional fields: `if ($field)`
+- `data-*` attributes for JS hooks
+- Placeholder spacing classes: `pt-??`, `pb-??`, `gap-??`
+
+**Never include:**
+- Decorative spacing values (no `pt-12`, `mb-8` - leave as `pt-??`)
+- Color classes
+- Font or typography classes
+- Animation classes
+- Exact pixel values
+
+Frontend dev fills in the decorative layer after scaffolding.
