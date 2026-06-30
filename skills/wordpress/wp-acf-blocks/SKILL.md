@@ -4,7 +4,7 @@ description: Scaffold, audit and manage custom ACF Gutenberg blocks for WordPres
 when_to_use: |
   - User wants to scaffold a new ACF Gutenberg block
   - User wants to audit existing blocks for structural or content issues
-  - User wants to initialize a new WordPress theme with the wp-acf-blocks structure
+  - User wants to set up a new WordPress theme with the wp-acf-blocks structure
   - User asks about block conventions, render.php patterns, fields.json, or asset loading
   - User works in a WordPress project with ACF Pro and the wp-acf-blocks workflow
 allowed-tools:
@@ -16,7 +16,7 @@ allowed-tools:
 
 Read [`@/knowledge/wp-acf-blocks/overview.md`](/knowledge/wp-acf-blocks/overview.md), then determine which sub-skill to invoke based on the user's request:
 
-- `/wp-acf-blocks:init` — initialize a new theme with the full directory structure
+- `/wp-acf-blocks:setup` — set up a new theme with the full directory structure and mu-plugins
 - `/wp-acf-blocks:plan-block` — discuss a block's requirements and create a GitHub issue with structured breakdown
 - `/wp-acf-blocks:add-block` — scaffold one or more blocks from GitHub issues, markdown brief, or interactive prompts
 - `/wp-acf-blocks:audit-blocks` — fast structural audit (files, wrappers, timestamps)

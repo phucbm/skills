@@ -64,7 +64,7 @@ This is standard Gutenberg behavior. No custom code needed.
 
 Gutenberg's native `previewImage` only works in the **full inserter sidebar**. It does NOT work in the **quick inserter** (slash commands `/hero`, `+` button).
 
-To bridge this gap, copy `[@ref/inserter-preview.js](ref/inserter-preview.js)` to `assets/js/inserter-preview.js` and update the `NAMESPACE` constant to match your block prefix (e.g. `acf`, `clientName`).
+To bridge this gap, copy `[@boilerplate/theme/assets/js/inserter-preview.js](../../boilerplate/theme/assets/js/inserter-preview.js)` to `assets/js/inserter-preview.js` and update the `NAMESPACE` constant to match your block prefix (e.g. `acf`, `clientName`).
 
 Enqueue it conditionally in `functions.php`:
 ```php
@@ -77,7 +77,7 @@ add_action('enqueue_block_editor_assets', function(){
 
 ### Wrapper
 
-The outermost element must use `theme_get_block_wrapper_attributes()` (see [`@ref/get-block-wrapper-attributes.php`](../../ref/get-block-wrapper-attributes.php) — copy to `helpers/ui/` at theme setup):
+The outermost element must use `theme_get_block_wrapper_attributes()` (see [`@boilerplate/theme/helpers/ui/get-block-wrapper-attributes.php`](../../boilerplate/theme/helpers/ui/get-block-wrapper-attributes.php) — included in `helpers/ui/` via the boilerplate):
 
 ```php
 $wrapper_attributes = theme_get_block_wrapper_attributes([
