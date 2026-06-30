@@ -15,6 +15,11 @@
     "./skills/backend/github-as-db",
     "./skills/deploy/cloudflare-pages",
     "./skills/deploy/publish-npm",
-    "./skills/wordpress/wp-blocks-dev"
+    "./skills/wordpress/wp-acf-blocks",
+    "./skills/wordpress/wp-acf-blocks/skills/setup",
+    "./skills/wordpress/wp-acf-blocks/skills/plan-block",
+    "./skills/wordpress/wp-acf-blocks/skills/add-block",
+    "./skills/wordpress/wp-acf-blocks/skills/revise-block",
+    "./skills/wordpress/wp-acf-blocks/skills/revise-block-deep"
   ]
 }
