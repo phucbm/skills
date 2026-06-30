@@ -34,7 +34,7 @@ get_field('key', $post_id) // 2 params = external field = no fields.json needed
 ```
 
 - Format is a **plain JSON object**, NOT an array. ACF per-block exports are single objects.
-- `{namespace}` must match the `name` in `block.json` (e.g. `dmd/info-accordion` → location value is `dmd/info-accordion`).
+- `{namespace}` must match the `name` in `block.json` (e.g. `mytheme/info-accordion` → location value is `mytheme/info-accordion`).
 - `key` must be a unique hash (e.g. `group_6a3f2b1c4d`). Never use a human-readable slug — ACF uses it as the primary identifier and requires global uniqueness.
 
 ## Common field type snippets

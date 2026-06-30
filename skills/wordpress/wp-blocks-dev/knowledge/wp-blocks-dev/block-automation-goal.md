@@ -126,5 +126,5 @@ Both sub-skills must:
 2. Generate unique group keys (format: `group_<8-char hex>`)
 3. Set correct `location` binding to the block slug
 4. Set `modified` to current Unix timestamp
-5. Use `dmd/` namespace (or configurable namespace) in `block.json` name
-6. Use `px_get_block_wrapper_attributes()` (not generic WP function) — DMD-specific helper
+5. Use configurable namespace in `block.json` name (read from project config or prompt user)
+6. Use `get_block_wrapper_attributes()` by default; use theme helper if project defines one

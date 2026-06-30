@@ -45,7 +45,7 @@ Minimum required fields:
 }
 ```
 
-- `{namespace}` matches the theme's registered block category slug (e.g. `dmd` for DMD project). Use the same value for both `name` and `category`.
+- `{namespace}` matches the theme's registered block category slug (e.g. `mytheme`). Use the same value for both `name` and `category`.
 - `title` and `description` must never be empty or placeholder values
 - If the block has frontend JS: add `"viewScript": ["file:./view.js"]`
 - If the block depends on a registered library: `"viewScript": ["library-handle", "file:./view.js"]`
@@ -77,21 +77,14 @@ add_action('enqueue_block_editor_assets', function(){
 
 ### Wrapper
 
-The outermost element must always use the theme helper `px_get_block_wrapper_attributes()`:
+The outermost element must always use `get_block_wrapper_attributes()`:
 
 ```php
-$wrapper_attributes = px_get_block_wrapper_attributes([
-    'slug'  => '{block-name}',
-    'block' => $block,
-    'class' => '',
-]);
-?>
-<section <?php echo $wrapper_attributes; ?>>
+<div <?php echo get_block_wrapper_attributes(['class' => 'wp-block-{block-name}']); ?>>
 ```
 
 - Use `<section>` for top-level page sections; `<div>` for utility/widget blocks.
-- Pass extra Tailwind classes in `class` (e.g. `'class' => 'lg:mb-20 mb-12'`). Leave empty if none.
-- Do NOT use generic WP `get_block_wrapper_attributes()` — the theme helper injects the block slug as a CSS class and handles other DMD-specific attributes.
+- If the theme provides a custom wrapper helper (e.g. `px_get_block_wrapper_attributes()`), use it instead — it typically injects the block slug as a CSS class and adds theme-specific attributes. Check with the project before scaffolding.
 
 ### Early return for admin
 
