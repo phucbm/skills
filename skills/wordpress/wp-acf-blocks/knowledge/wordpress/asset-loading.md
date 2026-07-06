@@ -33,15 +33,15 @@ On-demand is preferred for block-specific JS — WordPress only loads it on page
 
 ## mu-plugins
 
-Standalone PHP files in `mu-plugins/` — loaded automatically by WordPress, no activation needed. All block-system plugins are available at [phucbm/wp-mu-plugins](https://github.com/phucbm/wp-mu-plugins).
+Standalone PHP files in `mu-plugins/` — loaded automatically by WordPress, no activation needed. All block-system plugins are bundled in this skill's boilerplate at `boilerplate/mu-plugins/`.
 
 ### Required for block workflow
 
-**[`acf-local-json-router.php`](https://github.com/phucbm/wp-mu-plugins/blob/main/acf-local-json-router.php)** — Routes ACF field group JSON saves per-block to `blocks/{slug}/fields.json`, all other groups to `acf-json/`. Required for the per-block `fields.json` workflow.
+**`acf-local-json-router.php`** — Routes ACF field group JSON saves per-block to `blocks/{slug}/fields.json`, all other groups to `acf-json/`. Required for the per-block `fields.json` workflow.
 
-**[`wp-blocks-loader.php`](https://github.com/phucbm/wp-mu-plugins/blob/main/wp-blocks-loader.php)** — Reads `blocks.json` and calls `register_block_type()` for each block. Adds a project block category in the Gutenberg inserter (label from `THEME_NAME` constant). Also fixes the WP 6.3+ defer strategy so `viewScript` files load in the footer without race conditions.
+**`wp-blocks-loader.php`** — Reads `blocks.json` and calls `register_block_type()` for each block. Adds a project block category in the Gutenberg inserter (label from `THEME_NAME` constant). Also fixes the WP 6.3+ defer strategy so `viewScript` files load in the footer without race conditions.
 
-**[`tailwind-theme-loader.php`](https://github.com/phucbm/wp-mu-plugins/blob/main/tailwind-theme-loader.php)** — Enqueues Tailwind-built CSS on the frontend and inside the Gutenberg editor iframe. Handles per-developer CSS files by reading the logged-in user's ID and mapping it to a CSS key via `DEV_CSS_MAP`.
+**`tailwind-theme-loader.php`** — Enqueues Tailwind-built CSS on the frontend and inside the Gutenberg editor iframe. Handles per-developer CSS files by reading the logged-in user's ID and mapping it to a CSS key via `DEV_CSS_MAP`.
 
 ## Block registration
 

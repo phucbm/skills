@@ -119,7 +119,7 @@ A hook in this plugin automatically reminds you when `fields.json` is edited.
 
 ## Auto-routing JSON saves
 
-Install [`acf-local-json-router.php`](https://github.com/phucbm/wp-mu-plugins/blob/main/acf-local-json-router.php) to automate JSON routing:
+Install `acf-local-json-router.php` (from `boilerplate/mu-plugins/`) to automate JSON routing:
 
 - Block field groups → `blocks/{slug}/fields.json`
 - All other groups → `acf-json/{location-type}-{title-slug}.json`
