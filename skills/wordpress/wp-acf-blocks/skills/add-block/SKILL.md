@@ -3,7 +3,7 @@ name: add-block
 description: Scaffold one or more ACF Gutenberg blocks from GitHub issues, a markdown brief, or interactive prompts. Generates block.json, fields.json, render.php, and optional view.js.
 ---
 
-Read [`@/knowledge/wp-acf-blocks/acf-blocks/conventions.md`](/knowledge/wp-acf-blocks/acf-blocks/conventions.md) and [`@/knowledge/wp-acf-blocks/acf-blocks/fields.md`](/knowledge/wp-acf-blocks/acf-blocks/fields.md) before proceeding.
+Read [`@/knowledge/acf-blocks/conventions.md`](../../knowledge/acf-blocks/conventions.md) and [`@/knowledge/acf-blocks/fields.md`](../../knowledge/acf-blocks/fields.md) before proceeding.
 
 ## Usage
 

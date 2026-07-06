@@ -3,7 +3,7 @@ name: plan-block
 description: Discuss a new block's purpose and requirements with the user, then create a GitHub issue with a structured breakdown ready for /wp-acf-blocks:add-block.
 ---
 
-Read [`@/knowledge/wp-acf-blocks/acf-blocks/conventions.md`](/knowledge/wp-acf-blocks/acf-blocks/conventions.md) for the breakdown format and namespace detection rules before starting.
+Read [`@/knowledge/acf-blocks/conventions.md`](../../knowledge/acf-blocks/conventions.md) for the breakdown format and namespace detection rules before starting.
 
 ## Step 1 — Get GitHub project
 

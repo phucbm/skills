@@ -12,3 +12,14 @@ Every `SKILL.md` is either:
 Skills in `in-progress/` and `deprecated/` must not appear in `plugin.json` or `README.md`.
 
 See `docs/invocation.md` for the full user-invoked vs model-invoked rules.
+
+## Knowledge file links
+
+Links to knowledge files inside skill markdown must use **relative paths** from the referencing file's location. `@/knowledge/...` is display text only - the URL in `(...)` must be a valid relative path.
+
+Depths:
+- `skills/<domain>/<topic>/SKILL.md` → `knowledge/...`
+- `skills/<domain>/<topic>/agents/*.md` → `../knowledge/...`
+- `skills/<domain>/<topic>/skills/*/*.md` → `../../knowledge/...`
+
+Never use `/knowledge/...` (absolute from repo root) - GitHub will resolve it to `github.com/phucbm/skills/knowledge/...` which does not exist.

@@ -3,7 +3,7 @@ name: revise-block-deep
 description: Deep AI audit of all blocks or specific blocks — runs structural checks first, then uses AI to review content quality, descriptions, grammar, admin render justification, wrapper usage, and empty-state messages.
 ---
 
-Read [`@/knowledge/wp-acf-blocks/acf-blocks/conventions.md`](/knowledge/wp-acf-blocks/acf-blocks/conventions.md) and [`@/knowledge/wp-acf-blocks/acf-blocks/fields.md`](/knowledge/wp-acf-blocks/acf-blocks/fields.md), then:
+Read [`@/knowledge/acf-blocks/conventions.md`](../../knowledge/acf-blocks/conventions.md) and [`@/knowledge/acf-blocks/fields.md`](../../knowledge/acf-blocks/fields.md), then:
 
 ## Usage
 
