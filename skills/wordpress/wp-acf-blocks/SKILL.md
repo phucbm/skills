@@ -14,7 +14,7 @@ allowed-tools:
   - Edit
 ---
 
-Read [`@/knowledge/wp-acf-blocks/overview.md`](/knowledge/wp-acf-blocks/overview.md), then determine which sub-skill to invoke based on the user's request:
+Read [`@/knowledge/overview.md`](knowledge/overview.md), then determine which sub-skill to invoke based on the user's request:
 
 - `/wp-acf-blocks:setup` — set up a new theme with the full directory structure and mu-plugins
 - `/wp-acf-blocks:plan-block` — discuss a block's requirements and create a GitHub issue with structured breakdown
@@ -24,8 +24,8 @@ Read [`@/knowledge/wp-acf-blocks/overview.md`](/knowledge/wp-acf-blocks/overview
 
 For general questions about conventions, PHP patterns, ACF fields, Tailwind build, or TypeScript setup, read the relevant knowledge files directly:
 
-- [`@/knowledge/wp-acf-blocks/acf-blocks/conventions.md`](/knowledge/wp-acf-blocks/acf-blocks/conventions.md)
-- [`@/knowledge/wp-acf-blocks/acf-blocks/fields.md`](/knowledge/wp-acf-blocks/acf-blocks/fields.md)
-- [`@/knowledge/wp-acf-blocks/wordpress/asset-loading.md`](/knowledge/wp-acf-blocks/wordpress/asset-loading.md)
-- [`@/knowledge/wp-acf-blocks/tailwind/build-pipeline.md`](/knowledge/wp-acf-blocks/tailwind/build-pipeline.md)
-- [`@/knowledge/wp-acf-blocks/typescript/tsup-setup.md`](/knowledge/wp-acf-blocks/typescript/tsup-setup.md)
+- [`@/knowledge/acf-blocks/conventions.md`](knowledge/acf-blocks/conventions.md)
+- [`@/knowledge/acf-blocks/fields.md`](knowledge/acf-blocks/fields.md)
+- [`@/knowledge/wordpress/asset-loading.md`](knowledge/wordpress/asset-loading.md)
+- [`@/knowledge/tailwind/build-pipeline.md`](knowledge/tailwind/build-pipeline.md)
+- [`@/knowledge/typescript/tsup-setup.md`](knowledge/typescript/tsup-setup.md)

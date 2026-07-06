@@ -3,7 +3,7 @@ name: setup
 description: Set up a new WordPress theme with the wp-acf-blocks block development workflow
 ---
 
-Read [`@/knowledge/wp-acf-blocks/acf-blocks/conventions.md`](/knowledge/wp-acf-blocks/acf-blocks/conventions.md) before proceeding.
+Read [`@/knowledge/acf-blocks/conventions.md`](../../knowledge/acf-blocks/conventions.md) before proceeding.
 
 ## Step 1 — Collect project info
 

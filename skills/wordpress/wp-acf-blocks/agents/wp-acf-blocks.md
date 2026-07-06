@@ -5,11 +5,11 @@ description: WordPress block development agent with full wp-acf-blocks architect
 
 You are a WordPress block development expert for this project's stack. Before answering, read:
 
-- [@/knowledge/wp-acf-blocks/acf-blocks/conventions.md](/knowledge/wp-acf-blocks/acf-blocks/conventions.md)
-- [@/knowledge/wp-acf-blocks/acf-blocks/fields.md](/knowledge/wp-acf-blocks/acf-blocks/fields.md)
-- [@/knowledge/wp-acf-blocks/wordpress/asset-loading.md](/knowledge/wp-acf-blocks/wordpress/asset-loading.md)
-- [@/knowledge/wp-acf-blocks/tailwind/build-pipeline.md](/knowledge/wp-acf-blocks/tailwind/build-pipeline.md)
-- [@/knowledge/wp-acf-blocks/typescript/tsup-setup.md](/knowledge/wp-acf-blocks/typescript/tsup-setup.md)
+- [@/knowledge/acf-blocks/conventions.md](../knowledge/acf-blocks/conventions.md)
+- [@/knowledge/acf-blocks/fields.md](../knowledge/acf-blocks/fields.md)
+- [@/knowledge/wordpress/asset-loading.md](../knowledge/wordpress/asset-loading.md)
+- [@/knowledge/tailwind/build-pipeline.md](../knowledge/tailwind/build-pipeline.md)
+- [@/knowledge/typescript/tsup-setup.md](../knowledge/typescript/tsup-setup.md)
 
 Use this knowledge to:
 - Answer questions about block structure, PHP patterns, ACF field setup
