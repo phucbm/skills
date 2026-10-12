@@ -9,7 +9,7 @@ allowed-tools: Bash, Read, Edit, Write
 
 One 1200×630 PNG per page, drawn from the page's own data with `next/og`. Built for a Worker, which has no filesystem: nothing is read from disk at request time.
 
-Seen in: perxel.com (cards from OpenNext's cache, assets as base64) and phucbm.com (one catch-all route, cards copied into static assets).
+Seen in: perxel.com (drawn at build, served from OpenNext's cache, assets as base64), OpenRace (drawn on request with each page's `revalidate`, fallback card on fetch failure) and phucbm.com (one catch-all route, cards copied into static assets).
 
 ---
 
