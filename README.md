@@ -68,6 +68,10 @@ Update when new skills are released:
 - **[publish-npm](skills/deploy/publish-npm/SKILL.md)** - Auto-publish npm package on GitHub release via token or OIDC.
 - **[cloudflare-pages](skills/deploy/cloudflare-pages/SKILL.md)** - Migrate a Next.js app to Cloudflare Pages, pick the right adapter, and diagnose worker size issues.
 
+### nextjs
+
+- **[og-images](skills/nextjs/og-images/SKILL.md)** - Generate one Open Graph image per page with next/og, built to run on Cloudflare Workers.
+
 ### wordpress
 
 - **[wp-acf-blocks](skills/wordpress/wp-acf-blocks/SKILL.md)** - Scaffold, audit and manage ACF Gutenberg blocks with Tailwind CSS.
